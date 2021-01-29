@@ -15,10 +15,8 @@ function love.load()
     walls={create_obstacle(0,0,100,100)}
     blocks={create_block(600,500,100,100)}
     
-
     objects = {} -- table to hold all our physical objects
  
-   
     --let's create a player
     objects.player = {}
     objects.player.body = love.physics.newBody(world, x, y, "dynamic") --place the body in the center of the world and make it dynamic, so it can move around
@@ -48,7 +46,7 @@ function create_block(x,y,w,h)
     object.y=y
     object.w=w
     object.h=h
-    object.body = love.physics.newBody(world, x, y) --remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
+    object.body = love.physics.newBody(world, x, y, "dynamic") --remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
     object.shape = love.physics.newRectangleShape(w, h) --make a rectangle with a width of 650 and a height of 50
     object.fixture = love.physics.newFixture(object.body, object.shape) --attach shape to body
     object.fixture:setRestitution(0.5) --let the ball bounce
@@ -59,16 +57,16 @@ function love.update(dt)
   world:update(dt) --this puts the world into motion
 	if love.keyboard.isDown("right") then --press the right arrow key to push the ball to the right
     objects.player.body:applyForce(400, 0)
-  elseif love.keyboard.isDown("left") then --press the left arrow key to push the ball to the left
+  	elseif love.keyboard.isDown("left") then --press the left arrow key to push the ball to the left
     objects.player.body:applyForce(-400, 0)
-  elseif love.keyboard.isDown("up") then --press the right arrow key to push the ball to the right
+  	elseif love.keyboard.isDown("up") then --press the right arrow key to push the ball to the right
     objects.player.body:applyForce(0,-400)
 	elseif love.keyboard.isDown("down") then --press the left arrow key to push the ball to the left
     objects.player.body:applyForce(0,400)
   end
 
-      x=objects.player.body:getX()+16
-      y=objects.player.body:getY()+16
+  x=objects.player.body:getX()+16
+  y=objects.player.body:getY()+16
     
 end
 
@@ -86,10 +84,12 @@ function love.draw()
     for i,v in ipairs(walls) do
         render_local_box(v.body:getX(),v.body:getY(),v.w,v.h)
     end
+
     for i,v in ipairs(blocks) do
-        love.graphics.setColor(0.76, 0.18, 0.05) --set the drawing color to red for the ball
-        render_local_box(v.body:getX(),v.body:getY(),v.w,v.h)
-        love.graphics.setColor(1, 1, 1) --set the drawing color to red for the ball
+      love.graphics.setColor(0.76, 0.18, 0.05) --set the drawing color to red for the ball
+      render_local_box(v.body:getX(),v.body:getY(),v.w,v.h)
+      love.graphics.setColor(1, 1, 1) --set the drawing color to red for the ball
     end
+
     love.graphics.rectangle("fill",300,200,64,64)
 end
