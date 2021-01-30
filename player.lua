@@ -5,7 +5,7 @@ function create_player(x, y, world)
     self.shape = love.physics.newRectangleShape(30, 30) -- the ball's shape has a radius of 20
     self.fixture = love.physics.newFixture(self.body, self.shape, 4) -- Attach fixture to body and give it a density of 1.
     self.fixture:setRestitution(0) -- let the ball bounce
-
+    self.fixture:setUserData("player")
     function self.update(dt)
         -- Keyboard Navigation
         if love.keyboard.isDown("right") then -- press the right arrow key to push the ball to the right
