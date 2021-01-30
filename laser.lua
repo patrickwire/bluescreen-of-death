@@ -1,7 +1,7 @@
 function create_laser(x, y, distance, world)
     local self = {
         public_field = 0,
-        touching={}
+        touching=0
     }
    
     
