@@ -1,5 +1,10 @@
-require("laser")
+lick = require "libs/lick"
+lick.reset = true -- reload the love.load everytime you save
 
+require("laser")
+require("world")
+require("debugger")
+gameOver=false
 function love.load()
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
@@ -14,6 +19,7 @@ function love.load()
     w = images.player:getWidth()
     h = images.player:getHeight()
     world = love.physics.newWorld(0, 0, true)
+    world:setCallbacks(beginCallback, endCallback)
     walls = {create_obstacle(0, 0, 100, 100)}
     blocks = {create_block(600, 500, 100, 100)}
 
@@ -26,6 +32,7 @@ function love.load()
     objects.player.shape = love.physics.newCircleShape(32) -- the ball's shape has a radius of 20
     objects.player.fixture = love.physics.newFixture(objects.player.body, objects.player.shape, 4) -- Attach fixture to body and give it a density of 1.
     objects.player.fixture:setRestitution(0) -- let the ball bounce
+    objects.player.fixture:setUserData("player")
     laser=create_laser(300,0,200,world)
 end
 
@@ -74,6 +81,12 @@ function love.update(dt)
     x = objects.player.body:getX() + 16
     y = objects.player.body:getY() + 16
     laser:update(dt,blocks)
+
+    if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
+        gameOver=false
+        love.run()
+    
+    end
 end
 
 function render_local(asset, globalx, globaly)
@@ -91,10 +104,18 @@ function love.draw()
         render_local_box(v.body:getX(), v.body:getY(), v.w, v.h)
     end
     for i, v in ipairs(blocks) do
-        love.graphics.setColor(0.76, 0.18, 0.05) -- set the drawing color to red for the ball
+        love.graphics.setColor(2, 0.18, 0.05) -- set the drawing color to red for the ball
         render_local_box(v.body:getX(), v.body:getY(), v.w, v.h)
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
     end
     love.graphics.rectangle("fill", 300, 200, 64, 64)
     laser:draw()
+
+    if(gameOver)then
+        love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
+        love.graphics.rectangle("fill", 0, 0, width, width)
+        love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
+        love.graphics.print("BLUE SCREEN", 400, 300)
+    end
+    debug_print()
 end
