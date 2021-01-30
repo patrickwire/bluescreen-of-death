@@ -15,7 +15,6 @@ function create_obstacle(x, y, w, h)
     obstacle.fixture = love.physics.newFixture(obstacle.body, obstacle.shape) -- attach shape to body
 
     function obstacle.draw()
-        render_local_box(obstacle.body:getX(), obstacle.body:getY(), obstacle.w, obstacle.h)
         render_local(images.roadblock, obstacle.x, obstacle.y)
     end
 
