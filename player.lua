@@ -1,14 +1,14 @@
 function create_player(x, y, world)
-    local self = {}
-    self.w = 64
-    self.h = 64
-    self.body = love.physics.newBody(world, x - self.w / 2, y - self.h / 2, "dynamic") -- place the body in the center of the world and make it dynamic, so it can move around
-    self.body:setLinearDamping(10) -- place the body in the center of the world and make it dynamic, so it can move around
-    self.shape = love.physics.newRectangleShape(self.w, self.h) -- the ball's shape has a radius of 20
-    self.fixture = love.physics.newFixture(self.body, self.shape, 1) -- Attach fixture to body and give it a density of 1.
-    self.fixture:setRestitution(0) -- let the ball bounce
-    self.fixture:setUserData("player")
-    self.direction = "down"
+    local player = {}
+    player.w = 64
+    player.h = 64
+    player.body = love.physics.newBody(world, x - player.w / 2, y - player.h / 2, "dynamic") -- place the body in the center of the world and make it dynamic, so it can move around
+    player.body:setLinearDamping(10) -- place the body in the center of the world and make it dynamic, so it can move around
+    player.shape = love.physics.newRectangleShape(player.w, player.h) -- the ball's shape has a radius of 20
+    player.fixture = love.physics.newFixture(player.body, player.shape, 1) -- Attach fixture to body and give it a density of 1.
+    player.fixture:setRestitution(0) -- let the ball bounce
+    player.fixture:setUserData("player")
+    player.direction = "down"
 
     local images = {
         left = love.graphics.newImage("assets/gfx/playerRobotDummyLeft.png"),
@@ -17,40 +17,40 @@ function create_player(x, y, world)
         down = love.graphics.newImage("assets/gfx/playerRobotDummyFront.png")
     }
 
-    function self.update(dt)
+    function player.update(dt)
         -- Keyboard Navigation
         if love.keyboard.isDown("right") then -- press the right arrow key to push the ball to the right
-            self.body:applyForce(10000, 0)
-            self.direction = "right"
+            player.body:applyForce(10000, 0)
+            player.direction = "right"
         elseif love.keyboard.isDown("left") then -- press the left arrow key to push the ball to the left
-            self.body:applyForce(-10000, 0)
-            self.direction = "left"
+            player.body:applyForce(-10000, 0)
+            player.direction = "left"
         end
 
         if love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
-            self.body:applyForce(0, -10000)
-            self.direction = "up"
+            player.body:applyForce(0, -10000)
+            player.direction = "up"
         elseif love.keyboard.isDown("down") then -- press the left arrow key to push the ball to the left
-            self.body:applyForce(0, 10000)
-            self.direction = "down"
+            player.body:applyForce(0, 10000)
+            player.direction = "down"
         end
-        self.body:setAngle(0)
+        player.body:setAngle(0)
 
     end
 
-    function self.draw()
+    function player.draw()
         love.graphics.setColor(1, 1, 1)
         -- render_local_box(self.body:getX() - self.w / 2, self.body:getY() - self.h / 2, self.w, self.h)
-        if self.direction == "right" then
-            love.graphics.draw(images.right, x - self.w, y - self.h)
-        elseif self.direction == "left" then
-            love.graphics.draw(images.left, x - self.w, y - self.h)
-        elseif self.direction == "up" then
-            love.graphics.draw(images.up, x - self.w, y - self.h)
-        elseif self.direction == "down" then
-            love.graphics.draw(images.down, x - self.w, y - self.h)
+        if player.direction == "right" then
+            love.graphics.draw(images.right, x - player.w, y - player.h)
+        elseif player.direction == "left" then
+            love.graphics.draw(images.left, x - player.w, y - player.h)
+        elseif player.direction == "up" then
+            love.graphics.draw(images.up, x - player.w, y - player.h)
+        elseif player.direction == "down" then
+            love.graphics.draw(images.down, x - player.w, y - player.h)
         end
     end
 
-    return self
+    return player
 end
