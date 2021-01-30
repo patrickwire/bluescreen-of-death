@@ -1,5 +1,5 @@
 {
   "luahelper.colors.Enable": false,
   "editor.defaultFormatter": "yinfei.luahelper",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": false
 }

@@ -23,6 +23,7 @@ function love.load()
     x = 300
     y = 200
     -- game
+    love.window.setMode( 1000, 1000)
     width = love.graphics.getWidth()
     height = love.graphics.getHeight()
     speed = 100
