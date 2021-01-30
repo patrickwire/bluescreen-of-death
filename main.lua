@@ -10,7 +10,9 @@ require("helper")
 gameOver = false
 
 function love.load()
-    love.graphics.setBackgroundColor(0.8, .8, .8)
+    -- love.graphics.setBackgroundColor(0.8, .8, .8)
+    love.graphics.setBackgroundColor(1, 1, 1)
+
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
         world = love.graphics.newImage("assets/gfx/world.png")
@@ -66,7 +68,7 @@ function love.draw()
     for i, v in ipairs(walls) do
         v.draw()
     end
-
+    love.graphics.setBlendMode("alpha")
     for i, v in ipairs(containers) do
         v.draw()
     end

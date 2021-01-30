@@ -21,7 +21,7 @@ function create_container(x, y, w, h, type)
     end
 
     function container.draw()
-        render_local_box(container.body:getX(), container.body:getY(), container.w, container.h)
+        ---render_local_box(container.body:getX(), container.body:getY(), container.w, container.h)
         render_local(images.container, container.body:getX(), container.body:getY())
     end
 
