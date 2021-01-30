@@ -17,7 +17,7 @@ function love.load()
     h = images.player:getHeight()
     world = love.physics.newWorld(0, 0, true)
     walls = {create_obstacle(0, 0, 100, 100)}
-    boxes = {create_box(600, 500, 100, 100, "assets/gfx/container001.png")}
+    boxes = {create_box(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
 
