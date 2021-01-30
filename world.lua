@@ -3,10 +3,10 @@ function beginCallback(fixture1, fixture2, contact)
         laser.touching = laser.touching + 1
     end
     if fixture1:getUserData() == "laser" and fixture2:getUserData() == "player" then
-      gameOver=true
+        gameOver = true
     end
     if fixture1:getUserData() == "player" and fixture2:getUserData() == "laser" then
-      gameOver=true
+        gameOver = true
     end
 end
 

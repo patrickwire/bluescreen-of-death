@@ -1,7 +1,7 @@
-DEBUG=false
+DEBUG = false
 
 function debug_print()
-    if(DEBUG)then
+    if (DEBUG) then
         print("touching")
         print(laser.touching)
         print("gameover")
