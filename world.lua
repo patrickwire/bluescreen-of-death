@@ -24,3 +24,18 @@ function endCallback(fixture1, fixture2, contact)
     contact = nil
     collectgarbage()
 end
+
+function background()
+
+    for i = 0, 100, 1 do
+        for j = 0, 100, 1 do
+            c = 1 - (j % 2 * i % 2 + (j % 2 - 1) * (i % 2 - 1)) * 0.1
+            love.graphics.setColor(c, c, c) -- set the drawing color to red for the ball
+            if c < 1 then
+                render_local_box(i * 100, j * 100, 100, 100)
+            end
+        end
+    end
+    love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
+
+end

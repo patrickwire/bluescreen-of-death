@@ -15,6 +15,7 @@ function create_container(x, y, w, h, type)
     container.shape = love.physics.newRectangleShape(w, h) -- make a rectangle with a width of 650 and a height of 50
     container.fixture = love.physics.newFixture(container.body, container.shape) -- attach shape to body
     container.fixture:setRestitution(0.5) -- let the ball bounce
+    container.fixture:setUserData(RandomString(32)) -- let the ball bounce
 
     function container.update(dt)
     end

@@ -11,7 +11,7 @@ function create_laser(x, y, distance, world)
     position.maxD = distance
     local body = love.physics.newBody(world, position.x - (20 / 2), position.y - position.d / 2, "kinematic")
 
-    local shape = love.physics.newRectangleShape(2, position.d) -- the ball's shape has a radius of 20
+    local shape = love.physics.newRectangleShape(20, position.d) -- the ball's shape has a radius of 20
     local fixture = love.physics.newFixture(body, shape, 0) -- Attach fixture to body and give it a density of 1.
     fixture:setSensor(true)
     fixture:setUserData("laser")
@@ -26,7 +26,8 @@ function create_laser(x, y, distance, world)
         for i, v in ipairs(b) do
             for j, t in ipairs(self.touching) do
                 if (t == v.fixture:getUserData()) then
-                    d = x - v.body:getX()
+                    d = x - v.body:getX() + v.h / 2
+                    print(d)
                     if (position.d > d and d > 0) then
                         position.d = d
                         body:setX(position.x - (20 / 2))

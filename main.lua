@@ -3,16 +3,12 @@ require("player")
 require("laser")
 require("world")
 require("debugger")
-<<<<<<< HEAD
-require("box")
-require("helper")
-=======
 require("container")
 require("roadblock")
->>>>>>> 01af15c23910c9b5e2fdcbd81131da87fc233329
 gameOver = false
-
+require("helper")
 function love.load()
+    love.graphics.setBackgroundColor(0.8, .8, .8)
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
         world = love.graphics.newImage("assets/gfx/world.png")
@@ -28,17 +24,9 @@ function love.load()
     world = love.physics.newWorld(0, 0, true)
     world:setCallbacks(beginCallback, endCallback)
     walls = {create_obstacle(0, 0, 100, 100)}
-<<<<<<< HEAD
-    boxes = {create_box(400, 0, 100, 100)}
-
-    objects = {} -- table to hold all our physical objects
-    laser = create_laser(300, 0, 200, world)
-    player = create_player(x, y, world)
-=======
     containers = {create_container(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
->>>>>>> 01af15c23910c9b5e2fdcbd81131da87fc233329
     laser = create_laser(300, 0, 200, world)
     player = create_player(x, y, world)
 
@@ -47,7 +35,7 @@ end
 function love.update(dt)
     world:update(dt) -- this puts the world into motion
     player:update(dt)
-    laser:update(dt, boxes)
+    laser:update(dt, containers)
 
     if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
         gameOver = false
@@ -68,8 +56,8 @@ function render_local_box(globalx, globaly, w, h)
 end
 
 function love.draw()
-    render_local(images.world, 0, 0)
-
+    -- render_local(images.world, 0, 0)
+    background()
     for i, v in ipairs(walls) do
         v.draw()
     end
