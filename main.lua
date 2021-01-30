@@ -1,14 +1,16 @@
 require("laser")
 require("player")
 require("laser")
+require("laserActivator")
 require("level")
 require("world")
 require("debugger")
 require("container")
 require("roadblock")
 require("helper")
+require("goal")
 gameOver = false
-
+win = false
 function love.load()
     -- love.graphics.setBackgroundColor(0.8, .8, .8)
     love.graphics.setBackgroundColor(1, 1, 1)
@@ -34,7 +36,9 @@ function love.load()
     containers = {create_container(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-    laser = create_laser(300, 0, 200, world)
+    laser = create_laser(150, 400, 400, world)
+    laser_activator = create_laser_activator(300, 0, 100, 100, world)
+    goals = {create_goal(800, 500, 100, 100, world)}
     player = create_player(x, y, world)
 
 end
@@ -72,15 +76,26 @@ function love.draw()
     for i, v in ipairs(containers) do
         v.draw()
     end
+    for i, v in ipairs(goals) do
+
+        v.draw()
+    end
 
     player:draw()
     laser:draw()
+    laser_activator:draw()
 
     if (gameOver) then
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
         love.graphics.print("BLUE SCREEN", 400, 300)
+    end
+    if (win) then
+        love.graphics.setColor(0, 1, 0) -- set the drawing color to red for the ball
+        love.graphics.rectangle("fill", 0, 0, width, width)
+        love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
+        love.graphics.print("WIN", 400, 300)
     end
     debug_print()
 end

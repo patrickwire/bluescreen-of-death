@@ -1,7 +1,7 @@
 function create_laser(x, y, distance, world)
     local self = {
         public_field = 0,
-        touching = {}
+        touching = 0
     }
 
     local position = {}
@@ -17,26 +17,14 @@ function create_laser(x, y, distance, world)
     fixture:setUserData("laser")
 
     function self.draw()
-        render_local_box(position.x, position.y, 20, position.d)
+        love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
+        if (self.touching == 0) then
+            render_local_box(position.x, position.y, 20, position.d)
+        end
+        love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
     end
 
     function self.update(self, dt, b)
-
-        position.d = position.maxD
-        for i, v in ipairs(b) do
-            for j, t in ipairs(self.touching) do
-                if (t == v.fixture:getUserData()) then
-                    d = x - v.body:getX() + v.h / 2
-                    print(d)
-                    if (position.d > d and d > 0) then
-                        position.d = d
-                        body:setX(position.x - (20 / 2))
-                        body:setY(position.y - position.d / 2)
-
-                    end
-                end
-            end
-        end
 
     end
 
