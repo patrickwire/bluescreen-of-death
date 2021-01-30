@@ -20,6 +20,7 @@ function love.load()
     -- let's create a player
     objects.player = {}
     objects.player.body = love.physics.newBody(world, x, y, "dynamic") -- place the body in the center of the world and make it dynamic, so it can move around
+    objects.player.body:setLinearDamping( 10) -- place the body in the center of the world and make it dynamic, so it can move around
     objects.player.shape = love.physics.newCircleShape(32) -- the ball's shape has a radius of 20
     objects.player.fixture = love.physics.newFixture(objects.player.body, objects.player.shape, 4) -- Attach fixture to body and give it a density of 1.
     objects.player.fixture:setRestitution(0) -- let the ball bounce
@@ -46,7 +47,7 @@ function create_block(x, y, w, h)
     object.y = y
     object.w = w
     object.h = h
-    object.body = love.physics.newBody(world, x, y) -- remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
+    object.body = love.physics.newBody(world, x, y, "dynamic") -- remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
     object.shape = love.physics.newRectangleShape(w, h) -- make a rectangle with a width of 650 and a height of 50
     object.fixture = love.physics.newFixture(object.body, object.shape) -- attach shape to body
     object.fixture:setRestitution(0.5) -- let the ball bounce
@@ -56,13 +57,13 @@ end
 function love.update(dt)
     world:update(dt) -- this puts the world into motion
     if love.keyboard.isDown("right") then -- press the right arrow key to push the ball to the right
-        objects.player.body:applyForce(400, 0)
+        objects.player.body:applyForce(10000, 0)
     elseif love.keyboard.isDown("left") then -- press the left arrow key to push the ball to the left
-        objects.player.body:applyForce(-400, 0)
+        objects.player.body:applyForce(-10000, 0)
     elseif love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
-        objects.player.body:applyForce(0, -400)
+        objects.player.body:applyForce(0, -10000)
     elseif love.keyboard.isDown("down") then -- press the left arrow key to push the ball to the left
-        objects.player.body:applyForce(0, 400)
+        objects.player.body:applyForce(0, 10000)
     end
 
     x = objects.player.body:getX() + 16
