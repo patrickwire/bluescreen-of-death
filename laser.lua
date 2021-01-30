@@ -32,6 +32,7 @@ function create_laser(x, y, distance, world)
                         position.d = d
                         body:setX(position.x - (20 / 2))
                         body:setY(position.y - position.d / 2)
+
                     end
                 end
             end
