@@ -80,6 +80,9 @@ end
 function love.draw()
     -- render_local(images.world, 0, 0)
     background()
+
+    player:draw()
+
     for i, v in ipairs(walls) do
         v.draw()
     end
@@ -92,7 +95,6 @@ function love.draw()
         v.draw()
     end
 
-    player:draw()
     laser:draw()
     enemy:draw()
     laser_activator:draw()
