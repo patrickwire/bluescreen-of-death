@@ -1,4 +1,4 @@
-function create_laser(x,y,distanc,world)
+function create_laser(x, y, distance, world)
     local self = {
         public_field = 0,
         touching={}
@@ -8,7 +8,7 @@ function create_laser(x,y,distanc,world)
     local position = {}
     position.x=x
     position.y=y
-    position.d=distanc
+    position.d=distance
     local body=love.physics.newBody( world, position.x, position.y, "kinematic" )
   
     local shape = love.physics.newRectangleShape(2,position.d) -- the ball's shape has a radius of 20

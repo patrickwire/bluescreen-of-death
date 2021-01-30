@@ -1,6 +1,8 @@
+
 lick = require "libs/lick"
 lick.reset = true -- reload the love.load everytime you save
-
+require("laser")
+require("player")
 require("laser")
 require("world")
 require("debugger")
@@ -24,16 +26,10 @@ function love.load()
     blocks = {create_block(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-
-    -- let's create a player
-    objects.player = {}
-    objects.player.body = love.physics.newBody(world, x, y, "dynamic") -- place the body in the center of the world and make it dynamic, so it can move around
-    objects.player.body:setLinearDamping(10) -- place the body in the center of the world and make it dynamic, so it can move around
-    objects.player.shape = love.physics.newCircleShape(32) -- the ball's shape has a radius of 20
-    objects.player.fixture = love.physics.newFixture(objects.player.body, objects.player.shape, 4) -- Attach fixture to body and give it a density of 1.
-    objects.player.fixture:setRestitution(0) -- let the ball bounce
-    objects.player.fixture:setUserData("player")
     laser=create_laser(300,0,200,world)
+    player = create_player(x, y, world)
+    laser = create_laser(300, 0, 200, world)
+
 end
 
 function create_obstacle(x, y, w, h)
@@ -57,36 +53,27 @@ function create_block(x, y, w, h)
     object.w = w
     object.h = h
     object.body = love.physics.newBody(world, x, y, "dynamic") -- remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
+    object.body:setLinearDamping(3) -- place the body in the center of the world and make it dynamic, so it can move around
     object.shape = love.physics.newRectangleShape(w, h) -- make a rectangle with a width of 650 and a height of 50
     object.fixture = love.physics.newFixture(object.body, object.shape) -- attach shape to body
     object.fixture:setRestitution(0.5) -- let the ball bounce
-   
+
     return object
 end
 
 function love.update(dt)
     world:update(dt) -- this puts the world into motion
-    if love.keyboard.isDown("right") then -- press the right arrow key to push the ball to the right
-        objects.player.body:applyForce(10000, 0)
-    elseif love.keyboard.isDown("left") then -- press the left arrow key to push the ball to the left
-        objects.player.body:applyForce(-10000, 0)
-    end
-
-    if love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
-        objects.player.body:applyForce(0, -10000)
-    elseif love.keyboard.isDown("down") then -- press the left arrow key to push the ball to the left
-        objects.player.body:applyForce(0, 10000)
-    end
-
-    x = objects.player.body:getX() + 16
-    y = objects.player.body:getY() + 16
-    laser:update(dt,blocks)
+    player:update(dt)
+    laser:update(dt, blocks)
 
     if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
         gameOver=false
         love.run()
     
     end
+
+    x = player.body:getX() + 16
+    y = player.body:getY() + 16
 end
 
 function render_local(asset, globalx, globaly)
