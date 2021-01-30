@@ -41,13 +41,13 @@ function create_player(x, y, world)
         love.graphics.setColor(1, 1, 1)
         -- love.graphics.rectangle("fill", 300, 200, self.w, self.h)
         if self.direction == "right" then
-            love.graphics.draw(images.right, x, y)
+            love.graphics.draw(images.right, x - self.w, y - self.h)
         elseif self.direction == "left" then
-            love.graphics.draw(images.left, x, y)
+            love.graphics.draw(images.left, x - self.w, y - self.h)
         elseif self.direction == "up" then
-            love.graphics.draw(images.up, x, y)
+            love.graphics.draw(images.up, x - self.w, y - self.h)
         elseif self.direction == "down" then
-            love.graphics.draw(images.down, x, y)
+            love.graphics.draw(images.down, x - self.w, y - self.h)
         end
     end
 
