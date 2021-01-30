@@ -40,21 +40,11 @@ end
 
 function love.update(dt)
     world:update(dt) -- this puts the world into motion
-    if love.keyboard.isDown("right") then -- press the right arrow key to push the ball to the right
-        player.body:applyForce(10000, 0)
-    elseif love.keyboard.isDown("left") then -- press the left arrow key to push the ball to the left
-        player.body:applyForce(-10000, 0)
-    end
-
-    if love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
-        player.body:applyForce(0, -10000)
-    elseif love.keyboard.isDown("down") then -- press the left arrow key to push the ball to the left
-        player.body:applyForce(0, 10000)
-    end
+    player:update(dt)
+    laser:update(dt, blocks)
 
     x = player.body:getX() + 16
     y = player.body:getY() + 16
-    laser:update(dt, blocks)
 end
 
 function render_local(asset, globalx, globaly)
