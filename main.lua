@@ -61,8 +61,8 @@ function love.update(dt)
     for i, v in ipairs(containers) do
         v.update()
     end
-    x = player.body:getX() + 16
-    y = player.body:getY() + 16
+    x = player.body:getX()
+    y = player.body:getY()
 end
 
 function render_local(asset, globalx, globaly)
