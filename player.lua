@@ -40,7 +40,7 @@ function create_player(x, y, world)
 
     function self.draw()
         love.graphics.setColor(1, 1, 1)
-        -- love.graphics.rectangle("fill", 300, 200, self.w, self.h)
+        -- render_local_box(self.body:getX() - self.w / 2, self.body:getY() - self.h / 2, self.w, self.h)
         if self.direction == "right" then
             love.graphics.draw(images.right, x - self.w, y - self.h)
         elseif self.direction == "left" then

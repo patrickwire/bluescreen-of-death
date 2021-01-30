@@ -9,6 +9,7 @@ require("container")
 require("roadblock")
 require("helper")
 require("goal")
+require("enemy")
 gameOver = false
 win = false
 function love.load()
@@ -37,6 +38,7 @@ function love.load()
 
     objects = {} -- table to hold all our physical objects
     laser = create_laser(150, 400, 400, world)
+    enemy = create_enemy(250, 400, 800, 800, world)
     laser_activator = create_laser_activator(300, 0, 100, 100, world)
     goals = {create_goal(800, 500, 100, 100, world)}
     player = create_player(x, y, world)
@@ -46,6 +48,7 @@ end
 function love.update(dt)
     world:update(dt) -- this puts the world into motion
     player:update(dt)
+    enemy:update(dt)
     laser:update(dt, containers)
 
     if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
@@ -90,6 +93,7 @@ function love.draw()
 
     player:draw()
     laser:draw()
+    enemy:draw()
     laser_activator:draw()
 
     if (gameOver) then

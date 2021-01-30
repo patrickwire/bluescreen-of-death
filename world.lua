@@ -6,6 +6,12 @@ function beginCallback(fixture1, fixture2, contact)
     end
     if (fixture1:getUserData() == "laser" and fixture2:getUserData() == "player") or
         (fixture1:getUserData() == "player" and fixture2:getUserData() == "laser") then
+        print("laser")
+        gameOver = true
+    end
+    if (fixture1:getUserData() == "enemy" and fixture2:getUserData() == "player") or
+        (fixture1:getUserData() == "player" and fixture2:getUserData() == "enemy") then
+        print("enemy")
         gameOver = true
     end
     if (fixture1:getUserData() == "goal" and fixture2:getUserData() ~= "player") or
