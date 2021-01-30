@@ -1,8 +1,8 @@
-function create_box(x, y, w, h, type)
+function create_container(x, y, w, h, type)
     -- let's create the ground
-    type = type or boxTypes.emtpy
+    type = type or containerTypes.emtpy
     local images = {
-        box = love.graphics.newImage("assets/gfx/container001.png")
+        container = love.graphics.newImage("assets/gfx/container001.png")
     }
 
     self = {}
@@ -29,7 +29,7 @@ function create_box(x, y, w, h, type)
 
 end
 
-boxTypes = {
+containerTypes = {
     emtpy = 0,
     image = 1
 }
