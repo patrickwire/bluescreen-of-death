@@ -34,6 +34,7 @@ function create_player(x, y, world)
             self.body:applyForce(0, 10000)
             self.direction = "down"
         end
+        self.body:setAngle(0)
 
     end
 

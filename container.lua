@@ -18,11 +18,13 @@ function create_container(x, y, w, h, type)
     container.fixture:setUserData(RandomString(32)) -- let the ball bounce
 
     function container.update(dt)
+
+        container.body:setAngle(0)
     end
 
     function container.draw()
         ---render_local_box(container.body:getX(), container.body:getY(), container.w, container.h)
-        render_local(images.container, container.body:getX(), container.body:getY())
+        render_local(images.container, container.body:getX(), container.body:getY(), container.body:getAngle())
     end
 
     return container

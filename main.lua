@@ -50,16 +50,23 @@ function love.update(dt)
 
     if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
         gameOver = false
+        win = false
         love.run()
 
     end
-
+    for i, v in ipairs(containers) do
+        v.update()
+    end
     x = player.body:getX() + 16
     y = player.body:getY() + 16
 end
 
 function render_local(asset, globalx, globaly)
     love.graphics.draw(asset, 300 + globalx - x, 200 + globaly - y)
+end
+
+function render_local(asset, globalx, globaly, r)
+    love.graphics.draw(asset, 300 + globalx - x, 200 + globaly - y, r)
 end
 
 function render_local_box(globalx, globaly, w, h)
