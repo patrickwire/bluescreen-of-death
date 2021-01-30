@@ -1,6 +1,7 @@
 require("laser")
 require("player")
 require("laser")
+require("level")
 require("world")
 require("debugger")
 require("container")
@@ -23,7 +24,10 @@ function love.load()
     h = images.player:getHeight()
     world = love.physics.newWorld(0, 0, true)
     world:setCallbacks(beginCallback, endCallback)
-    walls = {create_obstacle(0, 0, 100, 100)}
+    walls = {}
+    for i, v in ipairs(obstaclelist) do
+        table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
+    end
     containers = {create_container(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects

@@ -8,25 +8,47 @@ function create_player(x, y, world)
     self.fixture = love.physics.newFixture(self.body, self.shape, 1) -- Attach fixture to body and give it a density of 1.
     self.fixture:setRestitution(0) -- let the ball bounce
     self.fixture:setUserData("player")
+    self.direction = "down"
+
+    local images = {
+        left = love.graphics.newImage("assets/gfx/playerRobotDummyLeft.png"),
+        right = love.graphics.newImage("assets/gfx/playerRobotDummyRight.png"),
+        up = love.graphics.newImage("assets/gfx/playerRobotDummyBack.png"),
+        down = love.graphics.newImage("assets/gfx/playerRobotDummyFront.png")
+    }
+
     function self.update(dt)
         -- Keyboard Navigation
         if love.keyboard.isDown("right") then -- press the right arrow key to push the ball to the right
             self.body:applyForce(10000, 0)
+            self.direction = "right"
         elseif love.keyboard.isDown("left") then -- press the left arrow key to push the ball to the left
             self.body:applyForce(-10000, 0)
+            self.direction = "left"
         end
 
         if love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
             self.body:applyForce(0, -10000)
+            self.direction = "up"
         elseif love.keyboard.isDown("down") then -- press the left arrow key to push the ball to the left
             self.body:applyForce(0, 10000)
+            self.direction = "down"
         end
 
     end
 
     function self.draw()
         love.graphics.setColor(1, 1, 1)
-        love.graphics.rectangle("fill", 300, 200, self.w, self.h)
+        -- love.graphics.rectangle("fill", 300, 200, self.w, self.h)
+        if self.direction == "right" then
+            love.graphics.draw(images.right, x, y)
+        elseif self.direction == "left" then
+            love.graphics.draw(images.left, x, y)
+        elseif self.direction == "up" then
+            love.graphics.draw(images.up, x, y)
+        elseif self.direction == "down" then
+            love.graphics.draw(images.down, x, y)
+        end
     end
 
     return self

@@ -1,5 +1,10 @@
 function create_obstacle(x, y, w, h)
     -- let's create the ground
+
+    local images = {
+        roadblock = love.graphics.newImage("assets/gfx/roadblock001.png")
+    }
+
     local obstacle = {}
     obstacle.x = x
     obstacle.y = y
@@ -11,6 +16,7 @@ function create_obstacle(x, y, w, h)
 
     function obstacle.draw()
         render_local_box(obstacle.body:getX(), obstacle.body:getY(), obstacle.w, obstacle.h)
+        render_local(images.roadblock, obstacle.x, obstacle.y)
     end
 
     return obstacle
