@@ -25,7 +25,7 @@ function love.load()
     world = love.physics.newWorld(0, 0, true)
     world:setCallbacks(beginCallback, endCallback)
     walls = {create_obstacle(0, 0, 100, 100)}
-    boxes = {create_box(600, 500, 100, 100, "assets/gfx/container001.png")}
+    boxes = {create_box(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
     laser=create_laser(300,0,200,world)
