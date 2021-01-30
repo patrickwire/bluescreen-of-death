@@ -3,8 +3,13 @@ require("player")
 require("laser")
 require("world")
 require("debugger")
+<<<<<<< HEAD
 require("box")
 require("helper")
+=======
+require("container")
+require("roadblock")
+>>>>>>> 01af15c23910c9b5e2fdcbd81131da87fc233329
 gameOver = false
 
 function love.load()
@@ -23,26 +28,20 @@ function love.load()
     world = love.physics.newWorld(0, 0, true)
     world:setCallbacks(beginCallback, endCallback)
     walls = {create_obstacle(0, 0, 100, 100)}
+<<<<<<< HEAD
     boxes = {create_box(400, 0, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
     laser = create_laser(300, 0, 200, world)
     player = create_player(x, y, world)
+=======
+    containers = {create_container(600, 500, 100, 100)}
+
+    objects = {} -- table to hold all our physical objects
+>>>>>>> 01af15c23910c9b5e2fdcbd81131da87fc233329
     laser = create_laser(300, 0, 200, world)
+    player = create_player(x, y, world)
 
-end
-
-function create_obstacle(x, y, w, h)
-    -- let's create the ground
-    object = {}
-    object.x = x
-    object.y = y
-    object.w = w
-    object.h = h
-    object.body = love.physics.newBody(world, x, y) -- remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
-    object.shape = love.physics.newRectangleShape(w, h) -- make a rectangle with a width of 650 and a height of 50
-    object.fixture = love.physics.newFixture(object.body, object.shape) -- attach shape to body
-    return object
 end
 
 function love.update(dt)
@@ -72,14 +71,14 @@ function love.draw()
     render_local(images.world, 0, 0)
 
     for i, v in ipairs(walls) do
-        render_local_box(v.body:getX(), v.body:getY(), v.w, v.h)
-    end
-
-    for i, v in ipairs(boxes) do
         v.draw()
     end
 
-    love.graphics.rectangle("fill", 300, 200, 64, 64)
+    for i, v in ipairs(containers) do
+        v.draw()
+    end
+
+    player:draw()
     laser:draw()
 
     if (gameOver) then
