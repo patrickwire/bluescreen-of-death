@@ -11,7 +11,6 @@ require("roadblock")
 require("helper")
 require("goal")
 require("enemy")
-
 require("capacitor")
 OFFSET_X=400
 OFFSET_Y=400
@@ -66,7 +65,7 @@ function love.load()
     table.insert(walls, create_capacitor(850, -150, capacitorTypes.large2))
     table.insert(walls, create_capacitor(-150, 1100, capacitorTypes.small))
     table.insert(walls, create_capacitor(800, 950, capacitorTypes.comp2))
-    table.insert(walls, create_capacitor(1500, 250, capacitorTypes.large1))
+    --table.insert(walls, create_capacitor(1500, 250, capacitorTypes.large1))
     table.insert(walls, create_capacitor(1800, 150, capacitorTypes.large2))
     table.insert(walls, create_capacitor(2300, 0, capacitorTypes.comp1))
     table.insert(walls, create_capacitor(1450, 1000, capacitorTypes.large2))
