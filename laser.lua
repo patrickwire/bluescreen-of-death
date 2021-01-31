@@ -1,4 +1,4 @@
-function create_laser(x, y, distance, world)
+function create_laser(x, y, distance, world,id)
     local self = {
         public_field = 0,
         touching = 0
@@ -14,7 +14,7 @@ function create_laser(x, y, distance, world)
     local shape = love.physics.newRectangleShape(20, position.d) -- the ball's shape has a radius of 20
     local fixture = love.physics.newFixture(body, shape, 0) -- Attach fixture to body and give it a density of 1.
     fixture:setSensor(true)
-    fixture:setUserData("laser")
+    fixture:setUserData({type="laser",id=id})
 
     function self.draw()
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball

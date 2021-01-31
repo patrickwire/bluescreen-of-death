@@ -1,15 +1,32 @@
 function beginCallback(fixture1, fixture2, contact)
-    if fixture1:getUserData() == "laseractivator" or fixture2:getUserData() == "laseractivator" then
+    local id
+    if (fixture1:getUserData() and fixture1:getUserData().type == "laseractivator") or
+        (fixture2:getUserData() and fixture2:getUserData().type == "laseractivator") then
 
-        laser.touching = laser.touching + 1
-
+        if (fixture2:getUserData() and fixture2:getUserData().id) then
+            id = fixture2:getUserData().id
+        end
+        if (fixture1:getUserData() and fixture1:getUserData().id) then
+            id = fixture1:getUserData().id
+        end
+        if (id == 1) then
+            laser.touching = laser.touching + 1
+        else
+            laser2.touching = laser2.touching + 1
+        end
     end
-    if (fixture1:getUserData() == "laser" and fixture2:getUserData() == "player") or
-        (fixture1:getUserData() == "player" and fixture2:getUserData() == "laser") then
-       if(laser.touching==0)then
-        print("laser")
-        gameOver = true
-       end
+    if (fixture1:getUserData() and fixture1:getUserData().type == "laser" and fixture2:getUserData() == "player") or
+        (fixture1:getUserData() == "player" and fixture2:getUserData() and fixture2:getUserData().type == "laser") then
+        if (fixture2:getUserData() and fixture2:getUserData().id) then
+            id = fixture2:getUserData().id
+        end
+        if (fixture1:getUserData() and fixture1:getUserData().id) then
+            id = fixture1:getUserData().id
+        end
+        if (laser.touching == 0) then
+            print("laser" .. id)
+            gameOver = true
+        end
     end
     if (fixture1:getUserData() == "enemy" and fixture2:getUserData() == "player") or
         (fixture1:getUserData() == "player" and fixture2:getUserData() == "enemy") then
@@ -21,14 +38,26 @@ function beginCallback(fixture1, fixture2, contact)
         win = true
     end
     if NO_DEATH then
-        gameOver=false
+        gameOver = false
     end
 
 end
 
 function endCallback(fixture1, fixture2, contact)
-    if fixture1:getUserData() == "laseractivator" or fixture2:getUserData() == "laseractivator" then
-        laser.touching = laser.touching - 1
+    local id
+    if (fixture1:getUserData() and fixture1:getUserData().type == "laseractivator") or
+        (fixture2:getUserData() and fixture2:getUserData().type == "laseractivator") then
+        if (fixture2:getUserData() and fixture2:getUserData().id) then
+            id = fixture2:getUserData().id
+        end
+        if (fixture1:getUserData() and fixture1:getUserData().id) then
+            id = fixture1:getUserData().id
+        end
+        if (id == 1) then
+            laser.touching = laser.touching - 1
+        else
+            laser2.touching = laser2.touching - 1
+        end
     end
 
     -- The contact handling in 0.8.0 is buggy. Do a full garbage collection to prevent some nasty crash.
