@@ -11,24 +11,36 @@ require("roadblock")
 require("helper")
 require("goal")
 require("enemy")
+
 require("capacitor")
+
 
 Talkies = require("libs/talkies")
 gameOver = false
 win = false
+volume=0.1
 textblock = 0;
 function love.load()
     -- love.graphics.setBackgroundColor(0.8, .8, .8)
     love.graphics.setBackgroundColor(1, 1, 1)
-
+    sounds = {
+        laser = love.audio.newSource("assets/sfx/laser.mp3", "static"),
+        pling = love.audio.newSource("assets/sfx/pling.mp3", "static"),
+        move = love.audio.newSource("assets/sfx/move.mp3", "static")
+    }
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
-        world = love.graphics.newImage("assets/gfx/world.png")
+        world = love.graphics.newImage("assets/gfx/world.png"),
+        win = love.graphics.newImage("assets/gfx/screenWinning001.png"),
+        lose = love.graphics.newImage("assets/gfx/screenLosing001.png")
     }
     x = 300
     y = 200
     -- game
     love.window.setMode(1000, 1000)
+
+    love.audio.setVolume( volume )
+
     width = love.graphics.getWidth()
     height = love.graphics.getHeight()
     speed = 100
@@ -40,6 +52,7 @@ function love.load()
     for i, v in ipairs(obstaclelist) do
         table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
     end
+
     table.insert(walls, create_capacitor(300, 300, capacitorTypes.small))
     table.insert(walls, create_capacitor(500, 300, capacitorTypes.comp1))
     table.insert(walls, create_capacitor(900, 300, capacitorTypes.large1))
@@ -50,6 +63,7 @@ function love.load()
                   create_container(1500, 1800, 100, 100), create_container(1500, 900, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
+
     laser = create_laser(1040, -50, 650, world, 1)
     laser2 = create_laser(1040, 1615, 565, world, 2)
     enemy = create_enemy(1250, 1400, 1800, 1400, world)
@@ -100,7 +114,8 @@ end
 function love.draw()
     -- render_local(images.world, 0, 0)
     background()
-
+    laser_activator:draw()
+    laser_activator2:draw()
     player:draw()
 
     for i, v in ipairs(walls) do
@@ -119,23 +134,25 @@ function love.draw()
     laser:draw()
     laser2:draw()
     enemy:draw()
-    laser_activator:draw()
-    laser_activator2:draw()
 
     if (gameOver) then
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
-        love.graphics.print("BLUE SCREEN", 400, 300)
-    end
-    if (win) then
-        love.graphics.setColor(0, 1, 0) -- set the drawing color to red for the ball
+        Talkies.nextOption()
+        love.graphics.draw(images.lose, width/2-images.lose:getWidth()/2,height/2-images.lose:getHeight()/2)
+
+    elseif (win) then
+        love.graphics.setColor(158/255, 230/255, 223/255) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
-        love.graphics.print("WIN", 400, 300)
+        --love.graphics.print("WIN", 400, 300)
+        love.graphics.draw(images.win, width/2-images.win:getWidth()/2,height/2-images.win:getHeight()/2)
+    elseif x<950 and y<1100 then
+        Talkies.draw()
     end
 
-    Talkies.draw()
+
     love.graphics.setColor(0, 1, 0)
     love.graphics.print("x: " .. x, 10, 10)
     love.graphics.print("y: " .. y, 10, 50)

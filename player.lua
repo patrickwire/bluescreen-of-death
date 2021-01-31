@@ -36,10 +36,14 @@ function create_player(x, y, world)
         local velocityX, velocityY = player.body:getLinearVelocity()
 
         if math.abs(velocityX) > 1 or math.abs(velocityY) > 1 then
+            sounds.move:play()
             animations.left:update(dt)
             animations.right:update(dt)
             animations.up:update(dt)
             animations.down:update(dt)
+        else
+            sounds.move:pause()
+            sounds.move:seek(0)
         end
 
         -- Keyboard Navigation
