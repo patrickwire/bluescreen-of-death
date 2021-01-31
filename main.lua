@@ -39,11 +39,12 @@ function love.load()
     containers = {create_container(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-    -- laser = create_laser(150, 400, 400, world)
-    -- enemy = create_enemy(250, 400, 800, 800, world)
-    -- laser_activator = create_laser_activator(300, 0, 100, 100, world)
-    -- goals = {create_goal(800, 500, 100, 100, world)}
-    player = create_player(x + 100, y + 100, world)
+    laser = create_laser(1045, 200, 400, world)
+    enemy = create_enemy(250, 400, 800, 800, world)
+    laser_activator = create_laser_activator(300, 0, 100, 100, world)
+    goals = {create_goal(800, 500, 100, 100, world)}
+    
+    player = create_player(x + 100, y + 200, world)
 
 end
 
