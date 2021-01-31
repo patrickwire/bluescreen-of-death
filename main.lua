@@ -41,7 +41,7 @@ function love.load()
     objects = {} -- table to hold all our physical objects
     laser = create_laser(1045, 200, 400, world)
     enemy = create_enemy(250, 400, 800, 800, world)
-    laser_activator = create_laser_activator(300, 0, 100, 100, world)
+    laser_activator = create_laser_activator(850, 300, 100, 100, world)
     goals = {create_goal(800, 800, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
@@ -69,10 +69,6 @@ end
 
 function render_local(asset, globalx, globaly)
     love.graphics.draw(asset, 300 + globalx - x, 200 + globaly - y)
-end
-
-function render_local(asset, globalx, globaly, r)
-    love.graphics.draw(asset, 300 + globalx - x, 200 + globaly - y, r)
 end
 
 function render_local_box(globalx, globaly, w, h)

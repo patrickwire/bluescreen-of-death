@@ -24,8 +24,7 @@ function create_container(x, y, w, h, type)
     end
 
     function container.draw()
-        render_local(images.container, container.body:getX() - w / 2, container.body:getY() - h / 2,
-            container.body:getAngle())
+        render_local(images.container, container.body:getX() - w / 2, container.body:getY() - h / 2)
         -- love.graphics.setColor(1, 1, 1, 0.5)
         -- render_local_box(container.body:getX() - w / 2, container.body:getY() - h / 2, container.w, container.h)
     end
