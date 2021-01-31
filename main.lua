@@ -14,8 +14,8 @@ require("enemy")
 
 require("capacitor")
 
-Talkies=require("libs/talkies")
 
+Talkies = require("libs/talkies")
 gameOver = false
 win = false
 volume=0.1
@@ -38,6 +38,7 @@ function love.load()
     y = 200
     -- game
     love.window.setMode(1000, 1000)
+
     love.audio.setVolume( volume )
 
     width = love.graphics.getWidth()
@@ -57,21 +58,22 @@ function love.load()
     table.insert(walls, create_capacitor(900, 300, capacitorTypes.large1))
     table.insert(walls, create_capacitor(1200, 300, capacitorTypes.large2))
     table.insert(walls, create_capacitor(1400, 300, capacitorTypes.comp2))
-    containers = {create_container(600, 800, 100, 100, containerTypes.file),create_container(500, 500, 100, 100, containerTypes.image)
-    ,create_container(1500, 1700, 100, 100)
-    ,create_container(1500, 1800, 100, 100),create_container(1500, 900, 100, 100)}
+    containers = {create_container(600, 800, 100, 100, containerTypes.file),
+                  create_container(500, 500, 100, 100, containerTypes.image), create_container(1500, 1700, 100, 100),
+                  create_container(1500, 1800, 100, 100), create_container(1500, 900, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-    laser = create_laser(1040, -50, 650, world,1)
-    laser2 = create_laser(1040, 1615, 565, world,2)
 
+    laser = create_laser(1040, -50, 650, world, 1)
+    laser2 = create_laser(1040, 1615, 565, world, 2)
     enemy = create_enemy(1250, 1400, 1800, 1400, world)
     laser_activator = create_laser_activator(850, 800, 100, 100, world, 1)
     laser_activator2 = create_laser_activator(850, 1800, 100, 100, world, 2)
     goals = {create_goal(280, 1450, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
-    Talkies.say("Old Robotman Jenkins", "Hi there, Kid. I'm so sad, I lost my old wedding foto files\nWould you be so kind to push them into the file converter, so we can restore them?\nMy wife will be sooo mad if you don't help me! If there was just a way to get past that laser...")
+    Talkies.say("Old Robotman Jenkins",
+        "Hi there, Kid. I'm so sad, I lost my old wedding foto files\nWould you be so kind to push them into the file converter, so we can restore them?\nMy wife will be sooo mad if you don't help me! If there was just a way to get past that laser...\n\n( Press SPACE to close this dialog )")
 
 end
 
@@ -87,6 +89,11 @@ function love.update(dt)
         love.run()
 
     end
+
+    if love.keyboard.isDown("space") then
+        Talkies.clearMessages()
+    end
+
     for i, v in ipairs(containers) do
         v.update()
     end
@@ -144,7 +151,7 @@ function love.draw()
         Talkies.draw()
     end
 
-    
+
     love.graphics.setColor(0, 1, 0)
     love.graphics.print("x: " .. x, 10, 10)
     love.graphics.print("y: " .. y, 10, 50)
