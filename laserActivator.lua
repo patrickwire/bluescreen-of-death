@@ -29,9 +29,9 @@ function create_laser_activator(x, y, w, h, world, id)
         love.graphics.setColor(1, 1, 1, 1) -- set the drawing color to red for the ball
         pressed=(id==1 and laser.touching>0) or (id==2 and laser2.touching>0)
         if pressed then
-            render_local(assets.default,position.x-4, position.y-2)
-        else
             render_local(assets.pressed,position.x-4, position.y-2)
+        else
+            render_local(assets.default,position.x-4, position.y-2)
         end
     end
 
