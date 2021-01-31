@@ -42,7 +42,7 @@ function love.load()
     laser = create_laser(1045, 200, 400, world)
     enemy = create_enemy(1250, 1400, 1800, 1400, world)
     laser_activator = create_laser_activator(850, 800, 100, 100, world)
-    goals = {create_goal(2800, 2800, 100, 100, world)}
+    goals = {create_goal(250, 1400, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
 
