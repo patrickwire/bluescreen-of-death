@@ -4,13 +4,16 @@ function create_laser(x, y, distance, world, id)
         touching = 0
     }
 
-    images = {
-        small = love.graphics.newImage("assets/gfx/electricity001_length400_spriteSheet100x400.png"),
-        big = love.graphics.newImage("assets/gfx/electricity001_length600_spriteSheet100x600.png")
+    local images = {
+        small = love.graphics.newImage("assets/gfx/electricity001_length565_spriteSheet100x565.png"),
+        big = love.graphics.newImage("assets/gfx/electricity001_length650_spriteSheet100x650.png"),
+        cabel = love.graphics.newImage("assets/gfx/cablesTop001.png"),
+
     }
 
     animations = {
-        small = newAnimation(images.big, 100, 600, 0.08, 0)
+        small = newAnimation(images.big, 100, 565, 0.08, 0),
+        big = newAnimation(images.big, 100, 650, 0.08, 0)
     }
 
     animations.small:setMode("loop")
@@ -31,16 +34,23 @@ function create_laser(x, y, distance, world, id)
     })
 
     function self.draw()
-        love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
+       -- love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
+
+       render_local(images.cabel, position.x-40,position.y-images.cabel:getHeight()+16)
         if (self.touching == 0) then
-            render_local_animation(animations.small, position.x, position.y)
-            render_local_box(position.x, position.y, 20, position.d)
+            if(distance<=600) then
+            render_local_animation(animations.small, position.x-40, position.y)
+            else
+                render_local_animation(animations.big, position.x-40, position.y)
+            end
+            --render_local_box(position.x, position.y, 20, position.d)
         end
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
     end
 
     function self.update(self, dt, b)
         animations.small:update(dt)
+        animations.big:update(dt)
 
     end
 
