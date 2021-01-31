@@ -103,7 +103,7 @@ function love.load()
     laser_activator2 = create_laser_activator(850, 1800, 100, 100, world, 2)
     goals = {create_goal(280, 1450, 100, 100, world)}
     spawn=create_spawn(250,0,100,100,world)
-    player = create_player(340,175, world)
+    player = create_player(339,175, world)
 
     Talkies.font = love.graphics.newFont("iosevka-regular.ttf", 30)
     Talkies.say("Old Robotman Jenkins",
