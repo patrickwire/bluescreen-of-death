@@ -137,6 +137,7 @@ function love.update(dt)
     if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
         gameOver = false
         win = false
+        sounds.music:pause()
         love.run()
 
     end
