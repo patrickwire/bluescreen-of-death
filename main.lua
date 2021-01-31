@@ -11,8 +11,10 @@ require("roadblock")
 require("helper")
 require("goal")
 require("enemy")
+Talkies=require("libs/talkies")
 gameOver = false
 win = false
+textblock=0;
 function love.load()
     -- love.graphics.setBackgroundColor(0.8, .8, .8)
     love.graphics.setBackgroundColor(1, 1, 1)
@@ -46,9 +48,10 @@ function love.load()
     enemy = create_enemy(1250, 1400, 1800, 1400, world)
     laser_activator = create_laser_activator(850, 800, 100, 100, world,1)
     laser_activator2 = create_laser_activator(850, 1800, 100, 100, world,2)
-    goals = {create_goal(250, 1400, 100, 100, world)}
+    goals = {create_goal(280, 1450, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
+    Talkies.say("Title", "Hello world!")
 
 end
 
@@ -69,6 +72,7 @@ function love.update(dt)
     end
     x = player.body:getX()
     y = player.body:getY()
+    Talkies.update(dt)
 end
 
 function render_local(asset, globalx, globaly)
@@ -116,6 +120,8 @@ function love.draw()
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
         love.graphics.print("WIN", 400, 300)
     end
+
+    Talkies.draw()
     love.graphics.setColor(0, 1, 0) 
     love.graphics.print("x: "..x, 10, 10)
     love.graphics.print("y: "..y, 10, 50)
