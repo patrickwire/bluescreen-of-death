@@ -33,6 +33,7 @@ function love.load()
     }
 
     sounds.music:play()
+    sounds.music:setLooping(true)
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
         paper = {love.graphics.newImage("assets/gfx/paperSmall001.png"),
