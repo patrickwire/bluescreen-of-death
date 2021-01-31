@@ -10,7 +10,7 @@ function create_enemy(x1, y1, x2, y2, world)
     position.direction = 1
     w = 100
     h = 100
-    local body = love.physics.newBody(world, position.x - (h / 2), position.y - w / 2, "kinematic")
+    local body = love.physics.newBody(world, position.x + (h / 2), position.y + w / 2, "kinematic")
 
     local shape = love.physics.newRectangleShape(w, h) -- the ball's shape has a radius of 20
     local fixture = love.physics.newFixture(body, shape, 0) -- Attach fixture to body and give it a density of 1.
