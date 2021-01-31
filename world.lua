@@ -9,8 +9,9 @@ function beginCallback(fixture1, fixture2, contact)
         if (fixture1:getUserData() and fixture1:getUserData().id) then
             id = fixture1:getUserData().id
         end
+        sounds.laser:play()
         if (id == 1) then
-            sounds.laser:play()
+            
             laser.touching = laser.touching + 1
             laser_activator.touching = laser.touching + 1
         else
@@ -38,6 +39,7 @@ function beginCallback(fixture1, fixture2, contact)
     end
     if (fixture1:getUserData() == "goal" and fixture2:getUserData() ~= "player") or
         (fixture1:getUserData() ~= "player" and fixture2:getUserData() == "goal") then
+        sounds.pling:play()
         win = true
     end
     if NO_DEATH then

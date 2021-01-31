@@ -43,6 +43,7 @@ function create_player(x, y, world)
             animations.down:update(dt)
         else
             sounds.move:pause()
+            sounds.move:seek(0)
         end
 
         -- Keyboard Navigation
