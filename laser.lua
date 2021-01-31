@@ -9,7 +9,7 @@ function create_laser(x, y, distance, world)
     position.y = y
     position.d = distance
     position.maxD = distance
-    local body = love.physics.newBody(world, position.x - (20 / 2), position.y - position.d / 2, "kinematic")
+    local body = love.physics.newBody(world, position.x + (20 / 2), position.y + position.d / 2, "kinematic")
 
     local shape = love.physics.newRectangleShape(20, position.d) -- the ball's shape has a radius of 20
     local fixture = love.physics.newFixture(body, shape, 0) -- Attach fixture to body and give it a density of 1.
