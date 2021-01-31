@@ -86,13 +86,14 @@ end
 
 function background()
 
-    for i = 0, 100, 1 do
-        for j = 0, 100, 1 do
+    for i = -1, 10, 1 do
+        for j = -1, 10, 1 do
             c = 1 - (j % 2 * i % 2 + (j % 2 - 1) * (i % 2 - 1)) * 0.1
-            love.graphics.setColor(c, c, c) -- set the drawing color to red for the ball
+            --love.graphics.setColor(c, c, c) -- set the drawing color to red for the ball
             if c < 1 then
-                render_local_box(i * 100, j * 100, 100, 100)
+              --  render_local(images.floor,i * 1000, j * 1000)
             end
+            render_local(images.floor,i * 1000, j * 1000)
         end
     end
     love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball

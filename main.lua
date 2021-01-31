@@ -36,6 +36,7 @@ function love.load()
     sounds.music:setLooping(true)
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
+        floor = love.graphics.newImage("assets/gfx/floorTile001_V001.png"),
         paper = {love.graphics.newImage("assets/gfx/paperSmall001.png"),
                  love.graphics.newImage("assets/gfx/paperSmall002.png"),
                  love.graphics.newImage("assets/gfx/paperSmall003.png"),
@@ -162,7 +163,7 @@ end
 
 function love.draw()
     -- render_local(images.world, 0, 0)
-    -- background()
+    background()
     laser_activator:draw()
     laser_activator2:draw()
     draw_paper()

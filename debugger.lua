@@ -1,6 +1,6 @@
 DEBUG = false
-NO_DEATH=true
-COORDINATES=true
+NO_DEATH=false
+COORDINATES=false
 function debug_print()
     if (DEBUG) then
         print("touching")
