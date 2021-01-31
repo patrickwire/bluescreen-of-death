@@ -11,7 +11,7 @@ function beginCallback(fixture1, fixture2, contact)
         end
         sounds.laser:play()
         if (id == 1) then
-            
+
             laser.touching = laser.touching + 1
             laser_activator.touching = laser.touching + 1
         else
@@ -37,8 +37,14 @@ function beginCallback(fixture1, fixture2, contact)
         print("enemy")
         gameOver = true
     end
-    if (fixture1:getUserData() == "goal" and fixture2:getUserData() ~= "player") or
-        (fixture1:getUserData() ~= "player" and fixture2:getUserData() == "goal") then
+    if (fixture1:getUserData()) then
+        print(fixture1:getUserData())
+    end
+    if (fixture2:getUserData()) then
+        print(fixture2:getUserData())
+    end
+    if (fixture1:getUserData() == "goal" and fixture2:getUserData() == "image") or
+        (fixture1:getUserData() == "image" and fixture2:getUserData() == "goal") then
         sounds.pling:play()
         win = true
     end

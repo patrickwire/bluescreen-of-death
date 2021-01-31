@@ -59,8 +59,8 @@ function love.load()
     table.insert(walls, create_capacitor(1200, 300, capacitorTypes.large2))
     table.insert(walls, create_capacitor(1400, 300, capacitorTypes.comp2))
     containers = {create_container(600, 800, 100, 100, containerTypes.file),
-                  create_container(500, 500, 100, 100, containerTypes.image), create_container(1500, 1700, 100, 100),
-                  create_container(1500, 1800, 100, 100), create_container(1500, 900, 100, 100)}
+                  create_container(300, 500, 100, 100, containerTypes.image), create_container(1500, 1700, 100, 100),
+                  create_container(1500, 1800, 100, 100), create_container(1500, 900, 100, 100,containerTypes.image)}
 
     objects = {} -- table to hold all our physical objects
 
