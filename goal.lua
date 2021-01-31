@@ -17,13 +17,14 @@ function create_goal(x, y, w, h, world)
     fixture:setUserData("goal")
     local wall1=gen_blocker(x+100,y-100,85,245,world)
     local wall2=gen_blocker(x-100,y-100,85,245,world)
+
     function self.draw()
         love.graphics.setColor(0, 1, 1, 0.3) -- set the drawing color to red for the ball
-        render_local_box(position.x, position.y, w, h)
+       -- render_local_box(position.x, position.y, w, h)
         love.graphics.setColor(1, 1, 1, 1) -- set the drawing color to red for the ball
         render_local(asset,position.x-90, position.y-100)
-       wall1.draw()
-       wall2.draw()
+       --wall1.draw()
+       --wall2.draw()
     end
 
     function self.update(self, dt, b,world)

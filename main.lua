@@ -41,12 +41,6 @@ function love.load()
         table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
     end
 
-    -- table.insert(walls, create_capacitor(300, 300, capacitorTypes.small))
-    -- table.insert(walls, create_capacitor(500, 300, capacitorTypes.comp1))
-    -- table.insert(walls, create_capacitor(900, 300, capacitorTypes.large1))
-    -- table.insert(walls, create_capacitor(1200, 300, capacitorTypes.large2))
-    -- table.insert(walls, create_capacitor(1400, 300, capacitorTypes.comp2))
-
     table.insert(walls, create_capacitor(800, 250, capacitorTypes.comp1))
     table.insert(walls, create_capacitor(50, 50, capacitorTypes.comp2))
     table.insert(walls, create_capacitor(500, 50, capacitorTypes.large1))
