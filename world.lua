@@ -27,7 +27,7 @@ function beginCallback(fixture1, fixture2, contact)
         if (fixture1:getUserData() and fixture1:getUserData().id) then
             id = fixture1:getUserData().id
         end
-        if (laser.touching == 0 and id==1)or(laser2.touching == 0 and id==2) then
+        if (laser.touching == 0 and id == 1) or (laser2.touching == 0 and id == 2) then
             print("laser" .. id)
             gameOver = true
             sounds.laser_hit:play()
@@ -49,6 +49,10 @@ function beginCallback(fixture1, fixture2, contact)
         (fixture1:getUserData() == "image" and fixture2:getUserData() == "goal") then
         sounds.pling:play()
         win = true
+    elseif (fixture1:getUserData() == "goal" and fixture2:getUserData() ~= "image") or
+        (fixture1:getUserData() ~= "image" and fixture2:getUserData() == "goal") then
+        Talkies.font = love.graphics.newFont("iosevka-regular.ttf", 30)
+        Talkies.say("Old Robot Jenkins", "That's not the box with my wedding fotos!")
     end
     if NO_DEATH then
         gameOver = false
