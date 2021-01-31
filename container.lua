@@ -3,8 +3,8 @@ function create_container(x, y, w, h, type)
     type = type or containerTypes.emtpy
     local images = {
         container = love.graphics.newImage("assets/gfx/container001.png"),
-        image = love.graphics.newImage("assets/gfx/transportFiles001.png"),
-        file = love.graphics.newImage("assets/gfx/transportFiles002.png")
+        image = love.graphics.newImage("assets/gfx/transportFiles002.png"),
+        file = love.graphics.newImage("assets/gfx/transportFiles001.png")
     }
 
     local container = {}
@@ -19,7 +19,10 @@ function create_container(x, y, w, h, type)
     container.fixture = love.physics.newFixture(container.body, container.shape) -- attach shape to body
     container.fixture:setRestitution(0.5) -- let the ball bounce
     container.fixture:setUserData(RandomString(32)) -- let the ball bounce
-
+    if(type==containerTypes.image) then
+        container.fixture:setUserData("image") -- let the ball bounce
+ 
+    end
     function container.update(dt)
 
         container.body:setAngle(0)
