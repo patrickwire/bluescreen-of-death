@@ -18,7 +18,8 @@ textblock=0;
 function love.load()
     -- love.graphics.setBackgroundColor(0.8, .8, .8)
     love.graphics.setBackgroundColor(1, 1, 1)
-    sounds = {laser=love.audio.newSource("assets/sfx/laser.mp3","static")}
+    sounds = {laser=love.audio.newSource("assets/sfx/laser.mp3","static"),
+    move=love.audio.newSource("assets/sfx/move.mp3","static")}
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
         world = love.graphics.newImage("assets/gfx/world.png")
