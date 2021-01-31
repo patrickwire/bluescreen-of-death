@@ -186,7 +186,7 @@ function love.draw()
     for i, v in ipairs(enemies) do
         v.draw()
     end
-
+    render_local(images.paper_mid, 1150, 1050)
     if (gameOver) then
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
@@ -207,8 +207,7 @@ function love.draw()
         Talkies.draw()
     end
 
-    render_local(images.paper_mid, 1150, 1050)
-
+   
 
     if x > 950 then
         Talkies.clearMessages()
