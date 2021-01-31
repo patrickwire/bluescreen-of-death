@@ -1,3 +1,4 @@
+require("AnAL")
 require("laser")
 require("player")
 require("laser")
@@ -38,19 +39,19 @@ function love.load()
     containers = {create_container(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-    laser = create_laser(150, 400, 400, world)
-    enemy = create_enemy(250, 400, 800, 800, world)
-    laser_activator = create_laser_activator(300, 0, 100, 100, world)
-    goals = {create_goal(800, 500, 100, 100, world)}
-    player = create_player(x, y, world)
+    -- laser = create_laser(150, 400, 400, world)
+    -- enemy = create_enemy(250, 400, 800, 800, world)
+    -- laser_activator = create_laser_activator(300, 0, 100, 100, world)
+    -- goals = {create_goal(800, 500, 100, 100, world)}
+    player = create_player(x + 100, y + 100, world)
 
 end
 
 function love.update(dt)
     world:update(dt) -- this puts the world into motion
     player:update(dt)
-    enemy:update(dt)
-    laser:update(dt, containers)
+    -- enemy:update(dt)
+    -- laser:update(dt, containers)
 
     if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
         gameOver = false
@@ -86,18 +87,19 @@ function love.draw()
     for i, v in ipairs(walls) do
         v.draw()
     end
+
     love.graphics.setBlendMode("alpha")
     for i, v in ipairs(containers) do
         v.draw()
     end
-    for i, v in ipairs(goals) do
 
-        v.draw()
-    end
+    -- for i, v in ipairs(goals) do
+    --     v.draw()
+    -- end
 
-    laser:draw()
-    enemy:draw()
-    laser_activator:draw()
+    -- laser:draw()
+    -- enemy:draw()
+    -- laser_activator:draw()
 
     if (gameOver) then
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
