@@ -18,7 +18,7 @@ OFFSET_Y = 400
 Talkies = require("libs/talkies")
 gameOver = false
 win = false
-volume = 0.1
+volume = 0.5
 textblock = 0;
 function love.load()
     -- love.graphics.setBackgroundColor(0.8, .8, .8)
@@ -31,8 +31,9 @@ function love.load()
         move = love.audio.newSource("assets/sfx/move.mp3", "static"),
         music = love.audio.newSource("assets/sfx/music.mp3", "stream")
     }
-
+    love.audio.setVolume(volume)
     sounds.music:play()
+    sounds.music:setVolume(0.3)
     sounds.music:setLooping(true)
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
@@ -54,7 +55,7 @@ function love.load()
     -- game
     love.window.setMode(1000, 1000)
 
-    love.audio.setVolume(volume)
+  
 
     width = love.graphics.getWidth()
     height = love.graphics.getHeight()
