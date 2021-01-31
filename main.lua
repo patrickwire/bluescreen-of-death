@@ -28,8 +28,11 @@ function love.load()
         laser_hit = love.audio.newSource("assets/sfx/laser_hit.mp3", "static"),
         pling = love.audio.newSource("assets/sfx/pling.mp3", "static"),
         enemy = love.audio.newSource("assets/sfx/enemy.mp3", "static"),
-        move = love.audio.newSource("assets/sfx/move.mp3", "static")
+        move = love.audio.newSource("assets/sfx/move.mp3", "static"),
+        music = love.audio.newSource("assets/sfx/music.mp3", "stream")
     }
+
+    sounds.music:play()
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
         paper = {love.graphics.newImage("assets/gfx/paperSmall001.png"),
