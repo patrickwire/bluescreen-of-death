@@ -2,7 +2,9 @@ function create_container(x, y, w, h, type)
     -- let's create the ground
     type = type or containerTypes.emtpy
     local images = {
-        container = love.graphics.newImage("assets/gfx/container001.png")
+        container = love.graphics.newImage("assets/gfx/container001.png"),
+        image = love.graphics.newImage("assets/gfx/transportFiles001.png"),
+        file = love.graphics.newImage("assets/gfx/transportFiles002.png")
     }
 
     local container = {}
@@ -25,6 +27,12 @@ function create_container(x, y, w, h, type)
 
     function container.draw()
         render_local(images.container, container.body:getX() - w / 2, container.body:getY() - h / 2)
+
+        if type == containerTypes.image then
+            render_local(images.image, container.body:getX() - images.image:getWidth() / 2 , container.y - 56)
+        elseif type == containerTypes.file then
+            render_local(images.file, container.body:getX() - images.file:getWidth() / 2 , container.y - 56)
+        end
         -- love.graphics.setColor(1, 1, 1, 0.5)
         -- render_local_box(container.body:getX() - w / 2, container.body:getY() - h / 2, container.w, container.h)
     end
@@ -35,5 +43,7 @@ end
 
 containerTypes = {
     emtpy = 0,
-    image = 1
+    image = 1,
+    file = 2,
+    audio = 3
 }
