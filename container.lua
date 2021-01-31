@@ -10,7 +10,7 @@ function create_container(x, y, w, h, type)
     container.y = y
     container.w = w
     container.h = h
-    container.body = love.physics.newBody(world, x - w / 2, y - h / 2, "dynamic") -- remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
+    container.body = love.physics.newBody(world, x + w / 2, y + h / 2, "dynamic") -- remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
     container.body:setLinearDamping(3) -- place the body in the center of the world and make it dynamic, so it can move around
     container.shape = love.physics.newRectangleShape(w, h) -- make a rectangle with a width of 650 and a height of 50
     container.fixture = love.physics.newFixture(container.body, container.shape) -- attach shape to body
@@ -23,8 +23,10 @@ function create_container(x, y, w, h, type)
     end
 
     function container.draw()
-        ---render_local_box(container.body:getX(), container.body:getY(), container.w, container.h)
-        render_local(images.container, container.body:getX(), container.body:getY(), container.body:getAngle())
+        render_local(images.container, container.body:getX() - w / 2, container.body:getY() - h / 2,
+            container.body:getAngle())
+        -- love.graphics.setColor(1, 1, 1, 0.5)
+        -- render_local_box(container.body:getX() - w / 2, container.body:getY() - h / 2, container.w, container.h)
     end
 
     return container
