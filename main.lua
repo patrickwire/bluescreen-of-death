@@ -11,6 +11,8 @@ require("roadblock")
 require("helper")
 require("goal")
 require("enemy")
+require("capacitor")
+
 Talkies=require("libs/talkies")
 gameOver = false
 win = false
@@ -38,6 +40,11 @@ function love.load()
     for i, v in ipairs(obstaclelist) do
         table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
     end
+    table.insert(walls, create_capacitor(300, 300, capacitorTypes.small))
+    table.insert(walls, create_capacitor(500, 300, capacitorTypes.comp1))
+    table.insert(walls, create_capacitor(900, 300, capacitorTypes.large1))
+    table.insert(walls, create_capacitor(1200, 300, capacitorTypes.large2))
+    table.insert(walls, create_capacitor(1400, 300, capacitorTypes.comp2))
     containers = {create_container(600, 800, 100, 100, containerTypes.file),create_container(500, 500, 100, 100, containerTypes.image)
     ,create_container(1500, 1700, 100, 100)
     ,create_container(1500, 1800, 100, 100),create_container(1500, 900, 100, 100)}
