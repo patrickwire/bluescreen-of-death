@@ -1,5 +1,5 @@
 DEBUG = false
-
+NO_DEATH=true
 function debug_print()
     if (DEBUG) then
         print("touching")

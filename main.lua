@@ -36,13 +36,13 @@ function love.load()
     for i, v in ipairs(obstaclelist) do
         table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
     end
-    containers = {create_container(600, 800, 100, 100)}
+    containers = {create_container(600, 800, 100, 100),create_container(500, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
     laser = create_laser(1045, 200, 400, world)
-    enemy = create_enemy(250, 400, 800, 800, world)
-    laser_activator = create_laser_activator(850, 300, 100, 100, world)
-    goals = {create_goal(800, 800, 100, 100, world)}
+    enemy = create_enemy(1250, 1400, 1800, 1400, world)
+    laser_activator = create_laser_activator(850, 800, 100, 100, world)
+    goals = {create_goal(2800, 2800, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
 
@@ -110,5 +110,9 @@ function love.draw()
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
         love.graphics.print("WIN", 400, 300)
     end
+    love.graphics.setColor(0, 1, 0) 
+    love.graphics.print("x: "..x, 10, 10)
+    love.graphics.print("y: "..y, 10, 50)
+    love.graphics.setColor(1, 1, 1) 
     debug_print()
 end

@@ -6,8 +6,10 @@ function beginCallback(fixture1, fixture2, contact)
     end
     if (fixture1:getUserData() == "laser" and fixture2:getUserData() == "player") or
         (fixture1:getUserData() == "player" and fixture2:getUserData() == "laser") then
+       if(laser.touching==0)then
         print("laser")
         gameOver = true
+       end
     end
     if (fixture1:getUserData() == "enemy" and fixture2:getUserData() == "player") or
         (fixture1:getUserData() == "player" and fixture2:getUserData() == "enemy") then
@@ -17,6 +19,9 @@ function beginCallback(fixture1, fixture2, contact)
     if (fixture1:getUserData() == "goal" and fixture2:getUserData() ~= "player") or
         (fixture1:getUserData() ~= "player" and fixture2:getUserData() == "goal") then
         win = true
+    end
+    if NO_DEATH then
+        gameOver=false
     end
 
 end
