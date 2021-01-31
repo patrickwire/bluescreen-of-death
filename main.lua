@@ -191,6 +191,9 @@ function love.draw()
     else 
         Talkies.draw()
     end
+    if x>950 then
+        Talkies.clearMessages()
+    end
     spawn.draw()
     love.graphics.setColor(0, 1, 0)
     love.graphics.print("x: " .. x, 10, 10)
