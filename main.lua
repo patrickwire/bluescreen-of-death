@@ -11,7 +11,11 @@ require("roadblock")
 require("helper")
 require("goal")
 require("enemy")
-Talkies = require("libs/talkies")
+
+require("capacitor")
+
+Talkies=require("libs/talkies")
+
 gameOver = false
 win = false
 volume=0.1
@@ -47,20 +51,27 @@ function love.load()
     for i, v in ipairs(obstaclelist) do
         table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
     end
-    containers = {create_container(600, 800, 100, 100), create_container(500, 500, 100, 100),
-                  create_container(1500, 1700, 100, 100), create_container(1500, 1800, 100, 100),
-                  create_container(1500, 900, 100, 100)}
+
+    table.insert(walls, create_capacitor(300, 300, capacitorTypes.small))
+    table.insert(walls, create_capacitor(500, 300, capacitorTypes.comp1))
+    table.insert(walls, create_capacitor(900, 300, capacitorTypes.large1))
+    table.insert(walls, create_capacitor(1200, 300, capacitorTypes.large2))
+    table.insert(walls, create_capacitor(1400, 300, capacitorTypes.comp2))
+    containers = {create_container(600, 800, 100, 100, containerTypes.file),create_container(500, 500, 100, 100, containerTypes.image)
+    ,create_container(1500, 1700, 100, 100)
+    ,create_container(1500, 1800, 100, 100),create_container(1500, 900, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-    laser = create_laser(1045, 200, 400, world, 1)
-    laser2 = create_laser(1045, 1600, 600, world, 2)
+    laser = create_laser(1040, -50, 650, world,1)
+    laser2 = create_laser(1040, 1615, 565, world,2)
+
     enemy = create_enemy(1250, 1400, 1800, 1400, world)
     laser_activator = create_laser_activator(850, 800, 100, 100, world, 1)
     laser_activator2 = create_laser_activator(850, 1800, 100, 100, world, 2)
     goals = {create_goal(280, 1450, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
-    Talkies.say("Title", "Hello world!")
+    Talkies.say("Old Robotman Jenkins", "Hi there, Kid. I'm so sad, I lost my old wedding foto files\nWould you be so kind to push them into the file converter, so we can restore them?\nMy wife will be sooo mad if you don't help me! If there was just a way to get past that laser...")
 
 end
 
@@ -120,17 +131,20 @@ function love.draw()
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
-        love.graphics.print("BLUE SCREEN", 400, 300)
-    end
-    if (win) then
+        Talkies.nextOption()
+        love.graphics.draw(images.lose, width/2-images.lose:getWidth()/2,height/2-images.lose:getHeight()/2)
+
+    elseif (win) then
         love.graphics.setColor(158/255, 230/255, 223/255) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
         --love.graphics.print("WIN", 400, 300)
-        love.graphics.draw(images.win, width-images.win:getWidth()/2,height-images.win:getHeight()/2)
+        love.graphics.draw(images.win, width/2-images.win:getWidth()/2,height/2-images.win:getHeight()/2)
+    elseif x<950 and y<1100 then
+        Talkies.draw()
     end
 
-    Talkies.draw()
+    
     love.graphics.setColor(0, 1, 0)
     love.graphics.print("x: " .. x, 10, 10)
     love.graphics.print("y: " .. y, 10, 50)

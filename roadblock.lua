@@ -16,6 +16,8 @@ function create_obstacle(x, y, w, h)
 
     function obstacle.draw()
         render_local(images.roadblock, obstacle.x, obstacle.y)
+        -- love.graphics.setColor(1, 1, 1, 0.5)
+        -- render_local_box(obstacle.x - w / 2, obstacle.y - h / 2, obstacle.w, obstacle.h)
     end
 
     return obstacle
