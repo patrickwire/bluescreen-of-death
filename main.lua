@@ -43,7 +43,7 @@ function love.load()
     ,create_container(1500, 1800, 100, 100),create_container(1500, 900, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-    laser = create_laser(1045, 200, 400, world,1)
+    laser = create_laser(1000, -50, 650, world,1)
     laser2 = create_laser(1045, 1600, 600, world,2)
     enemy = create_enemy(1250, 1400, 1800, 1400, world)
     laser_activator = create_laser_activator(850, 800, 100, 100, world,1)
@@ -51,7 +51,7 @@ function love.load()
     goals = {create_goal(280, 1450, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
-    Talkies.say("Title", "Hello world!")
+    Talkies.say("Old Robotman Jenkins", "Hi there, Kid. I'm so sad, I lost my old wedding foto files\nWould you be so kind to push them into the file converter, so we can restore them?\nMy wife will be sooo mad if you don't help me! If there was just a way to get past that laser...")
 
 end
 
