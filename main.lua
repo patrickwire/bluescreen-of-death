@@ -38,7 +38,7 @@ function love.load()
     for i, v in ipairs(obstaclelist) do
         table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
     end
-    containers = {create_container(600, 800, 100, 100),create_container(500, 500, 100, 100)
+    containers = {create_container(600, 800, 100, 100, containerTypes.file),create_container(500, 500, 100, 100, containerTypes.image)
     ,create_container(1500, 1700, 100, 100)
     ,create_container(1500, 1800, 100, 100),create_container(1500, 900, 100, 100)}
 
