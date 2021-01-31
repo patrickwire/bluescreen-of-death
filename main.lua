@@ -10,6 +10,7 @@ require("container")
 require("roadblock")
 require("helper")
 require("goal")
+require("spawnStation")
 require("enemy")
 require("capacitor")
 OFFSET_X=400
@@ -101,8 +102,8 @@ function love.load()
     laser_activator = create_laser_activator(850, 800, 100, 100, world, 1)
     laser_activator2 = create_laser_activator(850, 1800, 100, 100, world, 2)
     goals = {create_goal(280, 1450, 100, 100, world)}
-
-    player = create_player(x + 400, y + 100, world)
+    spawn=create_spawn(250,0,100,100,world)
+    player = create_player(340,175, world)
 
     Talkies.font = love.graphics.newFont("iosevka-regular.ttf", 30)
     Talkies.say("Old Robotman Jenkins",
@@ -188,7 +189,7 @@ function love.draw()
     elseif x < 950 and y < 1100 then
         Talkies.draw()
     end
-
+    spawn.draw()
     love.graphics.setColor(0, 1, 0)
     love.graphics.print("x: " .. x, 10, 10)
     love.graphics.print("y: " .. y, 10, 50)
