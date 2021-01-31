@@ -36,7 +36,7 @@ function love.load()
     for i, v in ipairs(obstaclelist) do
         table.insert(walls, create_obstacle(v.x, v.y, 100, 100))
     end
-    containers = {create_container(600, 500, 100, 100)}
+    containers = {create_container(600, 800, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
     laser = create_laser(1045, 200, 400, world)
