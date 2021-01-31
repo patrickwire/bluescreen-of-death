@@ -25,7 +25,9 @@ function love.load()
     love.graphics.setBackgroundColor(1, 1, 1)
     sounds = {
         laser = love.audio.newSource("assets/sfx/laser.mp3", "static"),
+        laser_hit = love.audio.newSource("assets/sfx/laser_hit.mp3", "static"),
         pling = love.audio.newSource("assets/sfx/pling.mp3", "static"),
+        enemy = love.audio.newSource("assets/sfx/enemy.mp3", "static"),
         move = love.audio.newSource("assets/sfx/move.mp3", "static")
     }
     images = {

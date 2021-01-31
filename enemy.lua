@@ -3,7 +3,9 @@ function create_enemy(x1, y1, x2, y2, world)
         public_field = 0,
         touching = 0
     }
-
+    local image=love.graphics.newImage("assets/gfx/enemyVoid001_spriteSheet100x100.png")
+    local animation=newAnimation(image, 100, 100, 0.08, 0)
+    animation:setMode("loop")
     local position = {}
     position.x = x1
     position.y = y1
@@ -21,13 +23,13 @@ function create_enemy(x1, y1, x2, y2, world)
 
     function self.draw()
         love.graphics.setColor(1, 0, 0) -- set the drawing color to red for the ball
-        if (self.touching == 0) then
-            render_local_box(position.x, position.y, w, h)
-        end
+      
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
+        render_local_animation(animation, position.x, position.y)
     end
 
     function self.update(self, dt, b)
+        animation:update(dt)
         if (position.x < x1) then
             position.direction = 1
         end

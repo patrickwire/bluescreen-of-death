@@ -27,14 +27,16 @@ function beginCallback(fixture1, fixture2, contact)
         if (fixture1:getUserData() and fixture1:getUserData().id) then
             id = fixture1:getUserData().id
         end
-        if (laser.touching == 0) then
+        if (laser.touching == 0 and id==1)or(laser2.touching == 0 and id==2) then
             print("laser" .. id)
             gameOver = true
+            sounds.laser_hit:play()
         end
     end
     if (fixture1:getUserData() == "enemy" and fixture2:getUserData() == "player") or
         (fixture1:getUserData() == "player" and fixture2:getUserData() == "enemy") then
         print("enemy")
+        sounds.enemy:play()
         gameOver = true
     end
     if (fixture1:getUserData()) then
