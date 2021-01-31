@@ -32,7 +32,7 @@ function love.load()
     }
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
-        world = love.graphics.newImage("assets/gfx/world.png"),
+   
         win = love.graphics.newImage("assets/gfx/screenWinning001.png"),
         lose = love.graphics.newImage("assets/gfx/screenLosing001.png")
     }
@@ -146,7 +146,7 @@ end
 
 function love.draw()
     -- render_local(images.world, 0, 0)
-    background()
+   -- background()
     laser_activator:draw()
     laser_activator2:draw()
     player:draw()
