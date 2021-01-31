@@ -84,5 +84,5 @@ function create_player(x, y, world)
 end
 
 function render_local_animation(animation, globalX, globalY)
-    animation:draw(300 + globalX - x, 200 + globalY - y, 0, 1, 1)
+    animation:draw(OFFSET_X + globalX - x, OFFSET_Y + globalY - y, 0, 1, 1)
 end

@@ -13,7 +13,8 @@ require("goal")
 require("enemy")
 
 require("capacitor")
-
+OFFSET_X=400
+OFFSET_Y=400
 Talkies = require("libs/talkies")
 gameOver = false
 win = false
@@ -36,8 +37,8 @@ function love.load()
         lose = love.graphics.newImage("assets/gfx/screenLosing001.png")
     }
     Talkies.font = love.graphics.newFont("iosevka-regular.ttf", 30)
-    x = 300
-    y = 200
+    x = OFFSET_X
+    y = OFFSET_Y
     -- game
     love.window.setMode(1000, 1000)
 
@@ -138,11 +139,11 @@ function love.update(dt)
 end
 
 function render_local(asset, globalx, globaly)
-    love.graphics.draw(asset, 300 + globalx - x, 200 + globaly - y)
+    love.graphics.draw(asset, OFFSET_X + globalx - x, OFFSET_Y + globaly - y)
 end
 
 function render_local_box(globalx, globaly, w, h)
-    love.graphics.rectangle("fill", 300 + globalx - x, 200 + globaly - y, w, h)
+    love.graphics.rectangle("fill", OFFSET_X + globalx - x, OFFSET_Y + globaly - y, w, h)
 end
 
 function love.draw()
