@@ -18,7 +18,7 @@ textblock=0;
 function love.load()
     -- love.graphics.setBackgroundColor(0.8, .8, .8)
     love.graphics.setBackgroundColor(1, 1, 1)
-
+    sounds = {laser=love.audio.newSource("assets/sfx/laser.mp3","static")}
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
         world = love.graphics.newImage("assets/gfx/world.png")
@@ -86,7 +86,8 @@ end
 function love.draw()
     -- render_local(images.world, 0, 0)
     background()
-
+    laser_activator:draw()
+    laser_activator2:draw()
     player:draw()
 
     for i, v in ipairs(walls) do
@@ -105,9 +106,7 @@ function love.draw()
     laser:draw()
     laser2:draw()
     enemy:draw()
-    laser_activator:draw()
-    laser_activator2:draw()
-
+   
     if (gameOver) then
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
@@ -120,6 +119,7 @@ function love.draw()
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
         love.graphics.print("WIN", 400, 300)
     end
+   
 
     Talkies.draw()
     love.graphics.setColor(0, 1, 0) 
