@@ -119,7 +119,7 @@ function love.load()
     player = create_player(339, 175, world)
 
     Talkies.font = love.graphics.newFont("iosevka-regular.ttf", 30)
-    Talkies.say("Old Robotman Jenkins",
+    Talkies.say("Old Robot Jenkins",
         "Hi there, Kid. I'm so sad, I lost my old wedding foto files\nWould you be so kind to push them into the file converter, so we can restore them?\nMy wife will be sooo mad if you don't help me! If there was just a way to get past that laser...\n\n( Press SPACE to close this dialog )")
 
 end
@@ -200,11 +200,18 @@ function love.draw()
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
         -- love.graphics.print("WIN", 400, 300)
         love.graphics.draw(images.win, width / 2 - images.win:getWidth() / 2, height / 2 - images.win:getHeight() / 2)
-    elseif x < 950 and y < 1100 then
+    -- elseif x < 950 and y < 1100 then
+    --    
+    else 
         Talkies.draw()
     end
+
     render_local(images.paper_mid, 1150, 1050)
     render_local(images.paper_mid, -22, 1950)
+
+    if x>950 then
+        Talkies.clearMessages()
+    end
     spawn.draw()
     love.graphics.setColor(0, 1, 0)
     love.graphics.print("x: " .. x, 10, 10)
