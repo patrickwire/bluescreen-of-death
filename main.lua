@@ -13,8 +13,8 @@ require("goal")
 require("spawnStation")
 require("enemy")
 require("capacitor")
-OFFSET_X=400
-OFFSET_Y=400
+OFFSET_X = 400
+OFFSET_Y = 400
 Talkies = require("libs/talkies")
 gameOver = false
 win = false
@@ -29,12 +29,20 @@ function love.load()
         pling = love.audio.newSource("assets/sfx/pling.mp3", "static"),
         enemy = love.audio.newSource("assets/sfx/enemy.mp3", "static"),
         move = love.audio.newSource("assets/sfx/move.mp3", "static"),
-        
+        music = love.audio.newSource("assets/sfx/music.mp3", "stream")
     }
-  
+
+    sounds.music:play()
     images = {
         player = love.graphics.newImage("assets/gfx/player.png"),
-
+        paper = {love.graphics.newImage("assets/gfx/paperSmall001.png"),
+                 love.graphics.newImage("assets/gfx/paperSmall002.png"),
+                 love.graphics.newImage("assets/gfx/paperSmall003.png"),
+                 love.graphics.newImage("assets/gfx/paperSmall004.png"),
+                 love.graphics.newImage("assets/gfx/paperSmall005.png"),
+                 love.graphics.newImage("assets/gfx/paperSmall006.png")},
+        paper_mid = love.graphics.newImage("assets/gfx/paperMedium001.png"),
+        paper_large = love.graphics.newImage("assets/gfx/paperLarge001.png"),
         win = love.graphics.newImage("assets/gfx/screenWinning001.png"),
         lose = love.graphics.newImage("assets/gfx/screenLosing001.png")
     }
@@ -68,7 +76,7 @@ function love.load()
     table.insert(walls, create_capacitor(850, -150, capacitorTypes.large2))
     table.insert(walls, create_capacitor(-150, 1100, capacitorTypes.small))
     table.insert(walls, create_capacitor(800, 950, capacitorTypes.comp2))
-    --table.insert(walls, create_capacitor(1500, 250, capacitorTypes.large1))
+    -- table.insert(walls, create_capacitor(1500, 250, capacitorTypes.large1))
     table.insert(walls, create_capacitor(1800, 150, capacitorTypes.large2))
     table.insert(walls, create_capacitor(2300, 0, capacitorTypes.comp1))
     table.insert(walls, create_capacitor(1450, 1000, capacitorTypes.large2))
@@ -93,19 +101,22 @@ function love.load()
 
     containers = {create_container(600, 800, 100, 100, containerTypes.file),
                   create_container(300, 500, 100, 100, containerTypes.image), create_container(1500, 1700, 100, 100),
-                  create_container(1500, 1800, 100, 100), create_container(1500, 900, 100, 100, containerTypes.image)}
+                  create_container(500, 1400, 100, 100), create_container(600, 1400, 100, 100),
+                  create_container(700, 1400, 100, 100), create_container(900, 1400, 100, 100),
+                  create_container(1500, 1800, 100, 100), create_container(1250, 1100, 100, 100, containerTypes.image)}
 
     objects = {} -- table to hold all our physical objects
 
     laser = create_laser(1040, -50, 650, world, 1)
     laser2 = create_laser(1040, 1615, 565, world, 2)
-    enemies = {create_enemy(-190, 2200, 130, 2200, world),create_enemy(1250, 1400, 1800, 1400, world), create_enemy(1900, 400, 2600, 400, world),
-               create_enemy(2000, 600, 2000, 1300, world, true),create_enemy(600, 1500, 600, 2100, world, true)}
+    enemies = {create_enemy(-190, 2200, 130, 2200, world), create_enemy(1250, 1400, 1800, 1400, world),
+               create_enemy(1900, 400, 2600, 400, world), create_enemy(2000, 600, 2000, 1300, world, true),
+               create_enemy(600, 1500, 600, 2100, world, true)}
     laser_activator = create_laser_activator(850, 800, 100, 100, world, 1)
     laser_activator2 = create_laser_activator(850, 1800, 100, 100, world, 2)
     goals = {create_goal(280, 1450, 100, 100, world)}
-    spawn=create_spawn(250,0,100,100,world)
-    player = create_player(339,175, world)
+    spawn = create_spawn(250, 0, 100, 100, world)
+    player = create_player(339, 175, world)
 
     Talkies.font = love.graphics.newFont("iosevka-regular.ttf", 30)
     Talkies.say("Old Robot Jenkins",
@@ -153,6 +164,7 @@ function love.draw()
     -- background()
     laser_activator:draw()
     laser_activator2:draw()
+    draw_paper()
     player:draw()
 
     for i, v in ipairs(walls) do
@@ -188,18 +200,47 @@ function love.draw()
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
         -- love.graphics.print("WIN", 400, 300)
         love.graphics.draw(images.win, width / 2 - images.win:getWidth() / 2, height / 2 - images.win:getHeight() / 2)
-    -- elseif x < 950 and y < 1100 then
-    --    
-    else 
+        -- elseif x < 950 and y < 1100 then
+        --    
+    else
         Talkies.draw()
     end
-    if x>950 then
+
+    render_local(images.paper_mid, 1150, 1050)
+    render_local(images.paper_mid, -22, 1950)
+
+    if x > 950 then
         Talkies.clearMessages()
     end
     spawn.draw()
-    love.graphics.setColor(0, 1, 0)
-    love.graphics.print("x: " .. x, 10, 10)
-    love.graphics.print("y: " .. y, 10, 50)
-    love.graphics.setColor(1, 1, 1)
+    if COORDINATES then
+        love.graphics.setColor(0, 1, 0)
+        love.graphics.print("x: " .. x, 10, 10)
+        love.graphics.print("y: " .. y, 10, 50)
+        love.graphics.setColor(1, 1, 1)
+    end
     debug_print()
+end
+
+function draw_paper()
+    render_local(images.paper[1], -50, 340)
+    render_local(images.paper[2], 71, 1040)
+    render_local(images.paper[3], 830, 240)
+    render_local(images.paper[5], 830, 240)
+    render_local(images.paper[4], 140, 1640)
+    render_local(images.paper[5], 2100, 140)
+    render_local(images.paper[1], 2100, 140)
+    render_local(images.paper[1], 1876, 570)
+    render_local(images.paper[6], 2500, 1200)
+    render_local(images.paper[4], 1890, 1800)
+    render_local(images.paper[4], 1240, 1835)
+    render_local(images.paper[3], 1300, 1800)
+    render_local(images.paper[1], 440, 1600)
+    render_local(images.paper[2], 470, 1630)
+    render_local(images.paper[5], 470, 2000)
+    render_local(images.paper[6], 785, 1518)
+    render_local(images.paper[6], 1300, 800)
+    render_local(images.paper[4], 1400, 840)
+    render_local(images.paper_large, -150, 1340)
+
 end
