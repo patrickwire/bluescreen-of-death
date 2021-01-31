@@ -72,6 +72,7 @@ function love.load()
     goals = {create_goal(280, 1450, 100, 100, world)}
 
     player = create_player(x + 400, y + 100, world)
+    Talkies.font = love.graphics.newFont("iosevka-regular.ttf", 30)
     Talkies.say("Old Robotman Jenkins",
         "Hi there, Kid. I'm so sad, I lost my old wedding foto files\nWould you be so kind to push them into the file converter, so we can restore them?\nMy wife will be sooo mad if you don't help me! If there was just a way to get past that laser...\n\n( Press SPACE to close this dialog )")
 
