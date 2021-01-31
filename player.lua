@@ -4,6 +4,7 @@ function create_player(x, y, world)
     player.h = 87
     player.body = love.physics.newBody(world, x - player.w / 2, y - player.h / 2, "dynamic") -- place the body in the center of the world and make it dynamic, so it can move around
     player.body:setLinearDamping(10) -- place the body in the center of the world and make it dynamic, so it can move around
+    player.body:setFixedRotation(true)
     player.shape = love.physics.newRectangleShape(player.w, player.h) -- the ball's shape has a radius of 20
     player.fixture = love.physics.newFixture(player.body, player.shape, 0.5) -- Attach fixture to body and give it a density of 1.
     player.fixture:setRestitution(0) -- let the ball bounce

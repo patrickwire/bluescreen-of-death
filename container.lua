@@ -12,6 +12,7 @@ function create_container(x, y, w, h, type)
     container.h = h
     container.body = love.physics.newBody(world, x + w / 2, y + h / 2, "dynamic") -- remember, the shape (the rectangle we create next) anchors to the body from its center, so we have to move it to (650/2, 650-50/2)
     container.body:setLinearDamping(3) -- place the body in the center of the world and make it dynamic, so it can move around
+    container.body:setFixedRotation(true)
     container.shape = love.physics.newRectangleShape(w, h) -- make a rectangle with a width of 650 and a height of 50
     container.fixture = love.physics.newFixture(container.body, container.shape) -- attach shape to body
     container.fixture:setRestitution(0.5) -- let the ball bounce
