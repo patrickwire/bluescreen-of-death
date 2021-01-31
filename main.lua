@@ -208,7 +208,7 @@ function love.draw()
     end
 
     render_local(images.paper_mid, 1150, 1050)
-    render_local(images.paper_mid, -22, 1950)
+
 
     if x > 950 then
         Talkies.clearMessages()
@@ -243,5 +243,6 @@ function draw_paper()
     render_local(images.paper[6], 1300, 800)
     render_local(images.paper[4], 1400, 840)
     render_local(images.paper_large, -150, 1340)
+    render_local(images.paper_mid, -22, 1950)
 
 end
