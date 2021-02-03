@@ -1,4 +1,4 @@
-function create_laser(x, y, distanc, world)
+function create_laser(x, y, distance, world)
     local self = {
         public_field = 0
     }
@@ -6,7 +6,7 @@ function create_laser(x, y, distanc, world)
     local position = {}
     position.x = x
     position.y = y
-    position.d = distanc
+    position.d = distance
     local body = love.physics.newBody(world, position.x, position.y, "kinematic")
 
     function self.draw()
