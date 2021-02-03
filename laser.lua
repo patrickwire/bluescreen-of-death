@@ -1,20 +1,20 @@
-function create_laser(x,y,distanc,world)
+function create_laser(x, y, distanc, world)
     local self = {
         public_field = 0
     }
 
     local position = {}
-    position.x=x
-    position.y=y
-    position.d=distanc
-    local body=love.physics.newBody( world, position.x, position.y, "kinematic" )
+    position.x = x
+    position.y = y
+    position.d = distanc
+    local body = love.physics.newBody(world, position.x, position.y, "kinematic")
 
     function self.draw()
         render_local_box(position.x, position.y, 20, position.d)
     end
 
-    function self.update(dt,objects)
-        
+    function self.update(dt, objects)
+
     end
 
     return self
