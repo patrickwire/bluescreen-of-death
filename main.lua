@@ -1,13 +1,10 @@
-
-lick = require "libs/lick"
-lick.reset = true -- reload the love.load everytime you save
 require("laser")
 require("player")
 require("laser")
 require("world")
 require("debugger")
 require("box")
-gameOver=false
+gameOver = false
 
 function love.load()
     images = {
@@ -28,9 +25,8 @@ function love.load()
     boxes = {create_box(600, 500, 100, 100)}
 
     objects = {} -- table to hold all our physical objects
-    laser=create_laser(300,0,200,world)
-    player = create_player(x, y, world)
     laser = create_laser(300, 0, 200, world)
+    player = create_player(x, y, world)
 
 end
 
@@ -53,9 +49,9 @@ function love.update(dt)
     laser:update(dt, blocks)
 
     if love.keyboard.isDown("escape") then -- press the right arrow key to push the ball to the right
-        gameOver=false
+        gameOver = false
         love.run()
-    
+
     end
 
     x = player.body:getX() + 16
@@ -81,10 +77,10 @@ function love.draw()
         v.draw()
     end
 
-    love.graphics.rectangle("fill", 300, 200, 64, 64)
+    player:draw()
     laser:draw()
 
-    if(gameOver)then
+    if (gameOver) then
         love.graphics.setColor(0, 0, 1) -- set the drawing color to red for the ball
         love.graphics.rectangle("fill", 0, 0, width, width)
         love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
