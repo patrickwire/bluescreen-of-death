@@ -5,8 +5,9 @@ require("world")
 require("debugger")
 require("container")
 require("roadblock")
-gameOver = false
 require("helper")
+gameOver = false
+
 function love.load()
     love.graphics.setBackgroundColor(0.8, .8, .8)
     images = {

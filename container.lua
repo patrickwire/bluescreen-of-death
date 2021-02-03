@@ -21,9 +21,8 @@ function create_container(x, y, w, h, type)
     end
 
     function container.draw()
-        love.graphics.setColor(0.76, 0.18, 0.05) -- set the drawing color to red for the ball
         render_local_box(container.body:getX(), container.body:getY(), container.w, container.h)
-        love.graphics.setColor(1, 1, 1) -- set the drawing color to red for the ball
+        render_local(images.container, container.body:getX(), container.body:getY())
     end
 
     return container
