@@ -7,6 +7,19 @@ function create_player(x, y, world)
     self.fixture:setRestitution(0) -- let the ball bounce
 
     function self.update(dt)
+        -- Keyboard Navigation
+        if love.keyboard.isDown("right") then -- press the right arrow key to push the ball to the right
+            self.body:applyForce(10000, 0)
+        elseif love.keyboard.isDown("left") then -- press the left arrow key to push the ball to the left
+            self.body:applyForce(-10000, 0)
+        end
+
+        if love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
+            self.body:applyForce(0, -10000)
+        elseif love.keyboard.isDown("down") then -- press the left arrow key to push the ball to the left
+            self.body:applyForce(0, 10000)
+        end
+
     end
 
     function self.draw()
