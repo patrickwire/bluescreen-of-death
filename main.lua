@@ -26,7 +26,7 @@ function love.load()
     objects.player.shape = love.physics.newCircleShape(32) -- the ball's shape has a radius of 20
     objects.player.fixture = love.physics.newFixture(objects.player.body, objects.player.shape, 4) -- Attach fixture to body and give it a density of 1.
     objects.player.fixture:setRestitution(0) -- let the ball bounce
-    laser=create_laser(300,0,200,world)
+    laser = create_laser(300, 0, 200, world)
 end
 
 function create_obstacle(x, y, w, h)
@@ -53,7 +53,7 @@ function create_block(x, y, w, h)
     object.shape = love.physics.newRectangleShape(w, h) -- make a rectangle with a width of 650 and a height of 50
     object.fixture = love.physics.newFixture(object.body, object.shape) -- attach shape to body
     object.fixture:setRestitution(0.5) -- let the ball bounce
-   
+
     return object
 end
 
@@ -73,7 +73,7 @@ function love.update(dt)
 
     x = objects.player.body:getX() + 16
     y = objects.player.body:getY() + 16
-    laser:update(dt,blocks)
+    laser:update(dt, blocks)
 end
 
 function render_local(asset, globalx, globaly)
