@@ -24,7 +24,7 @@ function love.load()
     objects.player.body = love.physics.newBody(world, x, y, "dynamic") -- place the body in the center of the world and make it dynamic, so it can move around
     objects.player.body:setLinearDamping(10) -- place the body in the center of the world and make it dynamic, so it can move around
     objects.player.shape = love.physics.newCircleShape(32) -- the ball's shape has a radius of 20
-    objects.player.fixture = love.physics.newFixture(objects.player.body, objects.player.shape, 4) -- Attach fixture to body and give it a density of 1.
+    objects.player.fixture = love.physics.newFixture(objects.player.body, objects.player.shape, 1.5) -- Attach fixture to body and give it a density of 1.
     objects.player.fixture:setRestitution(0) -- let the ball bounce
     laser = create_laser(300, 0, 200, world)
 end
