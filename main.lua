@@ -20,7 +20,7 @@ function love.load()
     -- let's create a player
     objects.player = {}
     objects.player.body = love.physics.newBody(world, x, y, "dynamic") -- place the body in the center of the world and make it dynamic, so it can move around
-    objects.player.body:setLinearDamping( 10) -- place the body in the center of the world and make it dynamic, so it can move around
+    objects.player.body:setLinearDamping(10) -- place the body in the center of the world and make it dynamic, so it can move around
     objects.player.shape = love.physics.newCircleShape(32) -- the ball's shape has a radius of 20
     objects.player.fixture = love.physics.newFixture(objects.player.body, objects.player.shape, 4) -- Attach fixture to body and give it a density of 1.
     objects.player.fixture:setRestitution(0) -- let the ball bounce
@@ -60,7 +60,9 @@ function love.update(dt)
         objects.player.body:applyForce(10000, 0)
     elseif love.keyboard.isDown("left") then -- press the left arrow key to push the ball to the left
         objects.player.body:applyForce(-10000, 0)
-    elseif love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
+    end
+
+    if love.keyboard.isDown("up") then -- press the right arrow key to push the ball to the right
         objects.player.body:applyForce(0, -10000)
     elseif love.keyboard.isDown("down") then -- press the left arrow key to push the ball to the left
         objects.player.body:applyForce(0, 10000)
