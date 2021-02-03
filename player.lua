@@ -25,6 +25,7 @@ function create_player(x, y, world)
     end
 
     function self.draw()
+        love.graphics.setColor(1, 1, 1)
         love.graphics.rectangle("fill", 300, 200, self.w, self.h)
     end
 
